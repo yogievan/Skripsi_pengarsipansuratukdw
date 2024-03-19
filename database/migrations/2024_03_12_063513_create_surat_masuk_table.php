@@ -11,17 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('surat_masuk', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->enum('role',['KepalaBagian', 'DosenStaff', 'Sekretariat'])->default('DosenStaff');
-            $table->string('jabatan');
+            $table->foreignId('id_kategori');
             $table->foreignId('id_unit');
-            $table->rememberToken();
+            $table->string('pengirim');
+            $table->string('perihal');
+            $table->string('keterangan');
+            $table->string('berkas');
+            $table->string('status');
             $table->timestamps();
 
+            $table->foreign('id_kategori')->references('id')->on('kategori')->onDelete('cascade');
             $table->foreign('id_unit')->references('id')->on('unit')->onDelete('cascade');
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('surat_masuk');
     }
 };

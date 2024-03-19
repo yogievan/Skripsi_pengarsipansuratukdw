@@ -1,13 +1,11 @@
 <header class="border-b shadow-lg bg-[#006B3F] border-green-900 p-4 text-white">
     <div class="flex">
-        <a href="">
-            <div class="flex gap-2">
-                <img class="w-[2.75rem] h-[3.75rem] mr-2 my-auto" src="../assets/img/UKDW.png" alt="UKDW">
-                <h1 class="text-2xl font-semibold my-auto">
-                    Sistem Informasi Pengarsipan Surat
-                </h1>
-            </div>
-        </a>
+        <div class="flex gap-2">
+            <img class="w-[2.75rem] h-[3.75rem] mr-2 my-auto" src="../assets/img/UKDW.png" alt="UKDW">
+            <h1 class="text-2xl font-semibold my-auto">
+                Sistem Informasi Pengarsipan Surat
+            </h1>
+        </div>
         <p class="ml-auto mr-5 my-auto font-semibold">
             name
         </p>

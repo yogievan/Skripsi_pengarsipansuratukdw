@@ -34,25 +34,10 @@
     <div class="flex">
         <!-- Sidebar -->
         <aside class="bg-[#006B3F] border-gray-700 text-white w-64 min-h-screen p-4 ">
+            <p class="font-semibold text-[24px]">MENU</p>
             <nav>
                 <ul>
-                    <li class="mb-2">
-                        <a href="" class="block p-2 rounded hover:bg-white hover:text-[#006B3F]">
-                            <i class="fa fa-house mr-3"></i> Dashboard
-                        </a>
-                    </li>
-                    
-                    <li class="mb-2">
-                        <a href="" class="block p-2 rounded hover:bg-white hover:text-[#006B3F]">
-                            <i class="fa fa-house mr-3"></i> Dashboard
-                        </a>
-                    </li>
-                    
-                    <li class="mb-2">
-                        <a href="" class="block p-2 rounded hover:bg-white hover:text-[#006B3F]">
-                            <i class="fa fa-house mr-3"></i> Dashboard
-                        </a>
-                    </li>
+                    @yield('menu')
                 </ul>
             </nav>
         </aside>
@@ -60,10 +45,9 @@
         <!-- Main Content -->
         <main class="flex p-4">
             <!-- content -->
-            <div class="py-3 pl-5 pr-5 font-bold text-gray-800">
-                <p class="text-[2em] font-extrabold my-auto mb-3">
+            <div class="py-3 pl-5 pr-5 font-bold text-[#333333]">
+                <p class="text-[1.5em] font-extrabold my-auto mb-3">
                     @yield('content_tittle')
-                    <hr class="my-3">
                 </p>
                 
                 <!-- content components -->

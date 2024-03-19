@@ -48,16 +48,16 @@
                 <!-- Carousel wrapper -->
                 <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                     <!-- Item 1 -->
-                    <div class="hidden duration-1000 ease-in-out" data-carousel-item>
-                        <img src="../assets/img/Slide1.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    <div class="hidden duration-1000 ease-in-out rounded-md" data-carousel-item>
+                        <img src="../assets/img/Slide1.png" class="absolute block rounded-md w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                     </div>
                     <!-- Item 2 -->
-                    <div class="hidden duration-1000 ease-in-out" data-carousel-item>
-                        <img src="../assets/img/Slide2.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    <div class="hidden duration-1000 ease-in-out rounded-md" data-carousel-item>
+                        <img src="../assets/img/Slide2.png" class="absolute block rounded-md w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                     </div>
                     <!-- Item 3 -->
-                    <div class="hidden duration-1000 ease-in-out" data-carousel-item>
-                        <img src="../assets/img/Slide3.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    <div class="hidden duration-1000 ease-in-out rounded-md" data-carousel-item>
+                        <img src="../assets/img/Slide3.png" class="absolute block rounded-md w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                     </div>
                 </div>
                 <!-- Slider indicators -->
