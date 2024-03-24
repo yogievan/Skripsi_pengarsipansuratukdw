@@ -6,6 +6,7 @@
 @section('content_tittle', 'Dashboard')
 @section('content')
 <div>
+    <p class="my-3">Selamat Datang! {{ $nama }}</p>
     <div class="grid grid-cols-3 gap-4">
         <div class="bg-white rounded shadow p-3 w-[250px] border border-l-4 border-l-blue-800">
             <div>
