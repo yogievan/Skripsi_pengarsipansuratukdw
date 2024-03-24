@@ -7,7 +7,10 @@
             </h1>
         </div>
         <p class="ml-auto mr-5 my-auto font-semibold">
-            name
+            @php
+                $name = Auth::user()->nama
+            @endphp
+            {{ $name }}
         </p>
         <div class="mr-10 my-auto">
             <a href="">
@@ -17,7 +20,7 @@
             </a>
         </div>
         <div class="my-auto">
-            <a href="">
+            <a href="{{ route('logout') }}">
                 <button class="bg-red-600 text-white font-bold py-2 px-4 rounded hover:bg-red-400 hover:text-white" title="Keluar">
                     LOG OUT
                 </button>

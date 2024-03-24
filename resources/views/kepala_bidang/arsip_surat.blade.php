@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('web_title', 'Arsip Surat')
 @section('menu')
-    @include('layouts.menu.sekretariat')
+    @include('layouts.menu.kepala_bidang')
 @endsection
 @section('content_tittle', 'Arsip Surat')
 @section('content')

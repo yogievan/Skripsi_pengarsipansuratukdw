@@ -1,23 +1,20 @@
 @extends('layouts.main')
-@section('web_title', 'Kelola Pengguna')
+@section('web_title', 'List Surat Masuk')
 @section('menu')
-    @include('layouts.menu.sekretariat')
+    @include('layouts.menu.dosen_staff')
 @endsection
-@section('content_tittle', 'Kelola Pengguna')
+@section('content_tittle', 'List Surat Masuk')
 @section('content')
     <div>
         <div class="grid grid-cols-3 gap-4">
             <div>
-                <a href="{{ route('TambahPengguna_sekretariat') }}">
-                    <button class="bg-[#006B3F] p-3 rounded text-white font-semibold mt-3 hover:bg-[#1c9e68]">Tambah Akun Pengguna</button>
-                </a>
             </div>
             <div></div>
             <div class="flex">
                 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 rounded-e-0 rounded-s-md">
                     <i class="fas fa-search"></i>
                 </span>
-                <input type="text" class="rounded-none rounded-e-lg bg-white border focus:ring-green-500 focus:border-green-500 block flex-1 min-w-0 w-full text-sm border-gray-200 p-2.5" placeholder="Cari Pengguna">
+                <input type="text" class="rounded-none rounded-e-lg bg-white border focus:ring-green-500 focus:border-green-500 block flex-1 min-w-0 w-full text-sm border-gray-200 p-2.5" placeholder="Cari Arsip Surat Masuk">
               </div>
             </div>
 
@@ -28,18 +25,21 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-center border w-[50px]">
-                                ID
+                                No
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center border w-[250px]">
-                                Nama Pengguna
+                            <th scope="col" class="px-6 py-3 text-center border w-[100px]">
+                                Tanggal
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center border w-[250px]">
-                                Email
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-center border w-[250px]">
-                                Unit / Jabatan
+                            <th scope="col" class="px-6 py-3 text-center border w-[350px]">
+                                Perihal Surat
                             </th>
                             <th scope="col" class="px-6 py-3 text-center border w-[150px]">
+                                File Surat
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-center border w-[150px]">
+                                Status Surat Keluar / Disposisi
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-center border w-[200px]">
                                 Aksi
                             </th>
                         </tr>
@@ -49,18 +49,25 @@
                             <th scope="row" class="px-6 py-4 text-center border w-[50px] font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 no
                             </th>
-                            <td class="px-6 py-4 text-center border w-[250px] break-words">
-                                Nama Pengguna
+                            <td class="px-6 py-4 text-center border w-[100px]">
+                                dd/mm/yyyy
                             </td>
-                            <td class="px-6 py-4 text-center border w-[250px] break-words">
-                                Email 
-                            </td>
-                            <td class="px-6 py-4 text-center border w-[250px] break-words">
-                                Unit / Jabatan
+                            <td class="px-6 py-4 text-center border w-[350px] break-words">
+                                asdasdasdasda 
                             </td>
                             <td class="px-6 py-4 text-center border w-[150px]">
-                                <a href="">
+                                Nama File
+                            </td>
+                            <td class="px-6 py-4 text-center border w-[150px]">
+                                <p class="bg-green-500 text-white p-1 rounded">Sudah Dibuat</p>
+                                <p class="bg-red-500 text-white p-1 rounded">Belum Dibuat</p>
+                            </td>
+                            <td class="flex gap-2 text-center w-[150px] mx-auto my-10">
+                                <a href="{{ route('DetailArsipSurat_sekretariat') }}">
                                     <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-400">Detail</button>
+                                </a>
+                                <a href="">
+                                    <button class="bg-red-500 p-3 rounded text-white hover:bg-blue-400">Hapus</button>
                                 </a>
                             </td>
                         </tr>

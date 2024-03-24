@@ -5,27 +5,35 @@
 @endsection
 @section('content_tittle', 'Dashboard')
 @section('content')
-<div class="grid grid-cols-3 gap-4">
-    <div class="bg-white rounded shadow p-3 w-[250px] border">
-        <div class="grid grid-cols-2">
-            <div class="w-[120px]">
-                <p class="text-lg font-medium">Total Surat Masuk</p>
+<div>
+    <div class="grid grid-cols-3 gap-4">
+        <div class="bg-white rounded shadow p-3 w-[250px] border border-l-4 border-l-blue-800">
+            <div>
+                <p class="text-[16px] font-semibold">Total Surat Masuk</p>
             </div>
-            <div class="ml-auto w-[80px]">
-                <p class="font-bold text-lg break-words">
-                    Nominal
+            <div class="ml-auto">
+                <p class="font-bold text-[24px] break-words">
+                    Nominal Surat
                 </p>
             </div>
         </div>
-    </div>
-    <div class="bg-white rounded shadow p-3 w-[250px] border">
-        <div class="grid grid-cols-2">
-            <div class="w-[120px]">
-                <p class="text-lg font-medium">Total Surat Disposisi</p>
+        <div class="bg-white rounded shadow p-3 w-[250px] border border-l-4 border-l-yellow-400">
+            <div>
+                <p class="text-[16px] font-semibold">Total Surat Keluar</p>
             </div>
-            <div class="ml-auto w-[80px]">
-                <p class="font-bold text-lg break-words">
-                    Nominal
+            <div class="ml-auto">
+                <p class="font-bold text-[24px] break-words">
+                    Nominal Surat
+                </p>
+            </div>
+        </div>
+        <div class="bg-white rounded shadow p-3 w-[250px] border border-l-4 border-l-red-600">
+            <div>
+                <p class="text-[16px] font-semibold">Total Surat Disposisi</p>
+            </div>
+            <div class="ml-auto">
+                <p class="font-bold text-[24px] break-words">
+                    Nominal Surat
                 </p>
             </div>
         </div>

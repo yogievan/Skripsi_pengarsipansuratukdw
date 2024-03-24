@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class sekretariatController extends Controller
 {
     public function viewDashboard(){
-        return view('sekretariat.dashboard');
+        $nama = Auth::user()->nama;
+        return view('sekretariat.dashboard', 
+        [
+            'nama'=> $nama,
+        ]);
     }
+
     public function viewArsipSurat(){
         return view('sekretariat.arsip_surat');
     }
@@ -29,5 +35,8 @@ class sekretariatController extends Controller
     }
     public function viewKelolaPengguna(){
         return view('sekretariat.kelola_pengguna');
+    }
+    public function viewTambahPengguna(){
+        return view('sekretariat.tambah_pengguna');
     }
 }
