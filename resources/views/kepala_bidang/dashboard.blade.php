@@ -6,7 +6,11 @@
 @section('content_tittle', 'Dashboard')
 @section('content')
 <div>
-    <p class="my-3">Selamat Datang! {{ $nama }}</p>
+    @if (session('success_message'))
+        <div class="alert alert-success">
+            {{ session('success_message') }}
+        </div>
+    @endif
     <div class="grid grid-cols-3 gap-4">
         <div class="bg-white rounded shadow p-3 w-[250px] border border-l-4 border-l-blue-800">
             <div>

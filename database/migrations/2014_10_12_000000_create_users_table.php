@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('password');
             $table->enum('role',['KepalaBidang', 'DosenStaff', 'Sekretariat'])->default('DosenStaff');
             $table->string('desc_jabatan');
-            $table->string('gambar')->nullable();
             $table->foreignId('id_unit');
             $table->rememberToken();
             $table->timestamps();

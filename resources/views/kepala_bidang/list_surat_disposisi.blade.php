@@ -63,7 +63,7 @@
                                 <p>Sudah dikirim ke "Nama Tujuan"</p>
                             </td>
                             <td class="flex gap-2 text-center w-[150px] mx-auto my-10">
-                                <a href="{{ route('DetailArsipSurat_sekretariat') }}">
+                                <a href="{{ route('DetailDisposisiSuratMasuk_kepalaBidang') }}">
                                     <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-400">Detail</button>
                                 </a>
                                 <a href="">
@@ -135,7 +135,7 @@
                                 <p>Sudah dikirim ke "Nama Tujuan"</p>
                             </td>
                             <td class="flex gap-2 text-center w-[150px] mx-auto my-10">
-                                <a href="{{ route('DetailArsipSurat_sekretariat') }}">
+                                <a href="{{ route('DetailDisposisiSuratKeluar_kepalaBidang') }}">
                                     <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-400">Detail</button>
                                 </a>
                                 <a href="">

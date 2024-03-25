@@ -27,7 +27,7 @@ class UserData extends Seeder
                 'email' => 'yogi.evan@si.ukdw.ac.id',
                 'password' => bcrypt('123'),
                 'role' => 'DosenStaff',
-                'desc_jabatan' => 'Dosen Fakultas Teknologi Informasi',
+                'desc_jabatan' => 'Dosen/Staf Prodi Sistem Informasi',
                 'id_unit' => '2',
             ],
             [	

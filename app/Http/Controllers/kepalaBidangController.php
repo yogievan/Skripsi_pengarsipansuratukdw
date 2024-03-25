@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class kepalaBidangController extends Controller
 {
     public function viewDashboard(){
-        return view('kepala_bidang.dashboard');
+        $nama = Auth::user()->nama;
+        return view('kepala_bidang.dashboard',
+        [
+            'nama'=> $nama,
+        ]
+    );
     }
     public function viewArsipSurat(){
         return view('kepala_bidang.arsip_surat');
@@ -20,5 +27,11 @@ class kepalaBidangController extends Controller
     }
     public function viewListSuratDisposisi(){
         return view('kepala_bidang.list_surat_disposisi');
+    }
+    public function viewDetailDisposisiSuratMasuk(){
+        return view('kepala_bidang.detail_disposisi_surat_masuk');
+    }
+    public function viewDetailDisposisiSuratKeluar(){
+        return view('kepala_bidang.detail_disposisi_surat_keluar');
     }
 }

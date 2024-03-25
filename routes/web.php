@@ -22,6 +22,8 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/KepalaBidang/ListSuratMasuk', [kepalaBidangController::class, 'viewListSuratMasuk'])->name('ListSuratMasuk_kepalaBidang');
             Route::get('/KepalaBidang/ListSuratKeluar', [kepalaBidangController::class, 'viewListSuratKeluar'])->name('ListSuratKeluar_kepalaBidang');
             Route::get('/KepalaBidang/ListSuratDisposisi', [kepalaBidangController::class, 'viewListSuratDisposisi'])->name('ListSuratDisposisi_kepalaBidang');
+            Route::get('/KepalaBidang/DetailDisposisiSuratMasuk', [kepalaBidangController::class, 'viewDetailDisposisiSuratMasuk'])->name('DetailDisposisiSuratMasuk_kepalaBidang');
+            Route::get('/KepalaBidang/DetailDisposisiSuratKeluar', [kepalaBidangController::class, 'viewDetailDisposisiSuratKeluar'])->name('DetailDisposisiSuratKeluar_kepalaBidang');
         });
 
         // USER DOSEN DAN STAFF
@@ -47,6 +49,10 @@ Route::middleware(['auth'])->group(function(){
         });
 
         // Logout
-        Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
+        Route::get('/Logout',[AuthController::class, 'logout'])->name('logout');
+
+        // Profile
+        // Route::get('/Profile',[AuthController::class, 'ViewProfile'])->name('profile');
+
     });        
 });

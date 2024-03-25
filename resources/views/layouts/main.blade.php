@@ -59,4 +59,5 @@
     <!-- Footer -->
     @include('layouts.footer')
 </body>
+@include('sweetalert::alert')
 </html>

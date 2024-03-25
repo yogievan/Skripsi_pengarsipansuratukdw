@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
@@ -27,13 +28,13 @@ class AuthController extends Controller
         if(Auth::attempt($datalogin)){
             //hak akses
             if(Auth::user()->role == 'KepalaBidang'){
-                return redirect(route('Dashboard_kepalaBidang'));
+                return redirect(route('Dashboard_kepalaBidang'))->with('toast_success', 'Login Berhasil, Selamat Datang!');
             } 
             elseif(Auth::user()->role == 'DosenStaff'){
-                return redirect(route('Dashboard_dosenStaff'));
+                return redirect(route('Dashboard_dosenStaff'))->with('toast_success', 'Login Berhasil, Selamat Datang!');
             }
             elseif(Auth::user()->role == 'Sekretariat'){
-                return redirect(route('Dashboard_sekretariat'));
+                return redirect(route('Dashboard_sekretariat'))->with('toast_success', 'Login Berhasil, Selamat Datang!');
             }
         }
         else{
@@ -46,4 +47,9 @@ class AuthController extends Controller
         Auth::logout();
         return redirect(route('login'));
     }
+
+    // Profile Setting
+    public function ViewProfile(){
+        return view('auth.detail_profile');
+    } 
 }

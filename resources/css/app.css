@@ -30,5 +30,6 @@
 body{
     font-family: Arial, sans-serif;
     size: 1em;
-    color: #333333;
+    --tw-text-opacity: 1;
+    color: rgb(17 24 39 / var(--tw-text-opacity))
 }
