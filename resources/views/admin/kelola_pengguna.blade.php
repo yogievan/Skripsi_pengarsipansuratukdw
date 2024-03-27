@@ -29,7 +29,7 @@
                             </div>
 
                             {{-- body modal --}}
-                            <form action="">
+                            <form action="{{ route('TambahPengguna_admin') }}" method="post">
                                 @csrf
                                 <div class="grid grid-cols-3 gap-6">
                                     <div class="col-span-3">
@@ -48,12 +48,13 @@
                                             </div>
                                             <div class="py-2">
                                                 <label>Password</label>
-                                                <input type="password" name="password" placeholder="••••••••" class="block bg-white rounded w-full outline-none p-2 font-normal focus:ring-green-500 focus:border-green-500" required>
+                                                <input type="password" name="password" value="12345678" placeholder="••••••••" class="block bg-white rounded w-full outline-none p-2 font-normal focus:ring-green-500 focus:border-green-500" required>
+                                                <p class="text-red-500 font-normal text-[14px]">*Note: Default Password = <b>12345678</b></p>
                                             </div>
                                         </div>
                                         <div class="py-2">
                                             <label>Role / Jabatan</label>
-                                            <select class="bg-white p-2 rounded outline-none w-full font-normal focus:ring-green-500 focus:border-green-500" required>
+                                            <select name="role" class="bg-white p-2 rounded outline-none w-full font-normal focus:ring-green-500 focus:border-green-500" required>
                                                 <option selected>Pilih Role</option>
                                                 <option value="KepalaBidang">Kepala Bidang</option>
                                                 <option value="DosenStaff">Dosen atau Staff</option>
@@ -66,7 +67,7 @@
                                                 <label>Unit</label>
                                                 <select name="id_unit" class="bg-white p-2 rounded outline-none w-full font-normal focus:ring-green-500 focus:border-green-500" required>
                                                     <option selected>Pilih Unit</option>
-                                                    @foreach ($unit as $no => $u)
+                                                    @foreach ($unit as $u)
                                                         <option value="{{ $u -> id }}">{{ $u -> unit }}</option>
                                                     @endforeach
                                                 </select>
@@ -75,7 +76,7 @@
                                                 <label>Deskripsi Jabatan</label>
                                                 <select name="id_jabatan" class="bg-white p-2 rounded outline-none w-full font-normal focus:ring-green-500 focus:border-green-500" required>
                                                     <option selected>Pilih Deskripsi Jabatan</option>
-                                                    @foreach ($jabatan as $no => $j)
+                                                    @foreach ($jabatan as $j)
                                                         <option value="{{ $j -> id }}">{{ $j -> jabatan }}</option>
                                                     @endforeach
                                                 </select>
@@ -84,9 +85,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <a href="">
-                                        <button class="bg-[#006B3F] p-3 rounded text-white font-semibold mt-3 hover:bg-[#1c9e68] w-[200px]">Buat Akun</button>
-                                    </a>
+                                    <button class="bg-[#006B3F] p-3 rounded text-white font-semibold mt-3 hover:bg-[#1c9e68] w-[200px]">Buat Akun</button>
                                 </div>
                             </form>
                         </div>
@@ -101,50 +100,69 @@
                 <input type="text" class="rounded-none rounded-e-lg bg-white border focus:ring-green-500 focus:border-green-500 block flex-1 min-w-0 w-full text-sm border-gray-200 p-2.5" placeholder="Cari Pengguna">
               </div>
             </div>
-
+        
         {{-- table --}}
         <div class="mt-8">
             <div class="relative overflow-x-auto border rounded">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-center border w-[50px]">
+                            <th scope="col" class="px-6 py-3 text-center border w-[50px] text-gray-900">
                                 ID
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center border w-[250px]">
+                            <th scope="col" class="px-6 py-3 text-center border w-[250px] text-gray-900">
                                 Nama Pengguna
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center border w-[250px]">
+                            <th scope="col" class="px-6 py-3 text-center border w-[250px] text-gray-900">
                                 Email
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center border w-[250px]">
+                            <th scope="col" class="px-6 py-3 text-center border w-[250px] text-gray-900">
                                 Unit / Jabatan
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center border w-[150px]">
+                            <th scope="col" class="px-6 py-3 text-center border w-[150px] text-gray-900">
                                 Aksi
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 text-center border w-[50px] font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                no
-                            </th>
-                            <td class="px-6 py-4 text-center border w-[250px] break-words">
-                                Nama Pengguna
-                            </td>
-                            <td class="px-6 py-4 text-center border w-[250px] break-words">
-                                Email 
-                            </td>
-                            <td class="px-6 py-4 text-center border w-[250px] break-words">
-                                Unit / Jabatan
-                            </td>
-                            <td class="px-6 py-4 text-center border w-[150px]">
-                                <a href="">
-                                    <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-400">Detail</button>
-                                </a>
-                            </td>
-                        </tr>
+                        @foreach ($users as $item)
+                            <tr class="bg-white border-b">
+                                <th scope="row" class="px-6 py-2 text-center border w-[50px] font-normal text-gray-900 whitespace-nowrap">
+                                    {{ $item -> id }}
+                                </th>
+                                <td class="px-6 py-2 border w-[250px] text-gray-900 font-normal break-words ">
+                                    {{ $item -> nama }}
+                                </td>
+                                <td class="px-6 py-2 border w-[250px] text-gray-900 font-normal break-words">
+                                    {{ $item -> email }}
+                                </td>
+                                <td class="px-6 py-2 border w-[250px] text-gray-900 font-normal break-words">
+                                    @php
+                                    // menyimpan nilai dalam atribut
+                                        $userUnit = $item -> id_unit;
+                                        $userJabatan = $item -> id_jabatan;
+                                    @endphp
+
+                                    {{-- menampilkan nama unit dan nama jabatan bila sama dengan nilai dari variable userUnit dan userJabatan --}}
+                                    @foreach ($unit as $u)
+                                        @if ($userUnit == $u -> id)
+                                            {{ $u -> unit }}
+                                        @endif
+                                    @endforeach 
+                                    :
+                                    @foreach ($jabatan as $j)
+                                        @if ($userJabatan == $j -> id)
+                                            {{ $j -> jabatan }}
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td class="px-6 py-2 text-center border w-[150px] text-gray-900">
+                                    <a href="/Admin/DetailPengguna-{{ $item -> id }}">
+                                        <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-400">Detail</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

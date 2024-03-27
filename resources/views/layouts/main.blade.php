@@ -46,7 +46,7 @@
         {{-- Main Content --}}
         <main class="flex p-4">
             {{-- content --}}
-            <div class="py-3 pl-5 pr-5 font-bold text-[#333333]">
+            <div class="py-3 pl-5 pr-5 font-bold">
                 <p class="text-[1.5em] font-extrabold my-auto mb-3">
                     @yield('content_tittle')
                 </p>

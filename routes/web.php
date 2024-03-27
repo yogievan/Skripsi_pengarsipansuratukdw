@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function(){
         Route::middleware('cekRole:Admin')->group(function () {
             Route::get('/Admin/Dashboard', [adminController::class, 'viewDashboard'])->name('Dashboard_admin');
             Route::get('/Admin/KelolaPengguna', [adminController::class, 'viewKelolaPengguna'])->name('KelolaPengguna_admin');
+            Route::post('/Admin/TambahPengguna', [adminController::class, 'TambahPengguna'])->name('TambahPengguna_admin');
+            Route::get('/Admin/DetailPengguna-{id}', [adminController::class, 'DetailPengguna']);
         });
         
         // Logout

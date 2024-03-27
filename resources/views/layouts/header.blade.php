@@ -1,5 +1,7 @@
 @php
     use App\Models\User;
+    use App\Models\Unit;
+    use App\Models\Jabatan;
     $id = Auth::user()->id;
     $user = User::find($id);
     $name = Auth::user()->nama;
@@ -7,7 +9,19 @@
     $email = Auth::user()->email;
     $unit = Auth::user()->id_unit;
     $desc_jabatan = Auth::user()->id_jabatan;
-    $password = Auth::user()->password;
+    $units = Unit::all();
+    $jabatans = Jabatan::all();
+
+    foreach ($units as $unt) {
+        if ($unit == $unt -> id) {
+            $unt_name = $unt -> unit;
+        }
+    }
+    foreach ($jabatans as $jbn) {
+        if ($desc_jabatan == $jbn -> id) {
+            $jbn_name = $jbn -> jabatan;
+        }
+    }
 @endphp
 <header class="border-b shadow-lg bg-[#006B3F] border-green-900 p-4 text-white">
     <div class="flex">
@@ -21,7 +35,7 @@
             {{ $name }}
         </p>
         <div class="mr-10 my-auto">
-            <button data-popover-target="popover-user-profile" type="button" class="w-[60px] bg-white p-1 rounded-full border">
+            <button data-popover-target="popover-user-profile" type="button" class="w-[50px] bg-white p-1 rounded-full border">
                 <img class="rounded-full" src="../assets/profile/profile_default.png" />
             </button>
 
@@ -52,7 +66,7 @@
             </div>
 
             <div id="update_profile" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                <div class="relative p-4 w-full max-w-md max-h-full">
+                <div class="relative p-4 w-full max-w-[700px] max-h-full">
 
                     <div class="relative bg-white rounded-lg shadow">
 
@@ -82,20 +96,20 @@
                                 </div>
                                 <div class="col-span-2">
                                     <label class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                                    <input type="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" value="{{ $email }}" readonly>
+                                    <input type="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" value="{{ $email }}">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
                                     <label class="block mb-2 text-sm font-medium text-gray-900">Unit</label>
-                                    <input type="text" name="id_unit" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" value="{{ $unit }}" readonly>
+                                    <input type="text" name="id_unit" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" value="{{ $unt_name }}" readonly>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
                                     <label class="block mb-2 text-sm font-medium text-gray-900">Jabatan</label>
-                                    <input type="text" name="id_jabatan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" value="{{ $desc_jabatan }}" readonly>
+                                    <input type="text" name="id_jabatan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" value="{{ $jbn_name }}" readonly>
                                 </div>
                                 <div class="col-span-2">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900">Password Baru</label>
-                                    <input type="password" name="password" class="bg-gray-50 text-gray-900 border border-gray-300 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" placeholder="Wajib Memasukkan Password Baru">
-                                    <p class="text-[12px] text-red-600">*Note: Bila <b>tidak ingin mengganti Password</b> kosongkan saja!</p>
+                                    <label class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                                    <input type="password" name="password" class="bg-gray-50 text-gray-900 border border-gray-300 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" placeholder="Wajib Memasukkan Password Lama / Buat Baru">
+                                    <p class="text-[14px] text-red-600">*Note: Bila <b>tidak ingin mengganti Password</b> kosongkan saja!</p>
                                 </div>
                             </div>
                             <Button class="bg-[#006B3F] p-3 rounded text-white font-bold w-full hover:bg-[#3bca8f]">Simpan Perubahan</Button>
