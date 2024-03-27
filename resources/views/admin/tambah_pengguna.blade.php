@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('web_title', 'Kelola Pengguna')
 @section('menu')
-    @include('layouts.menu.sekretariat')
+    @include('layouts.menu.admin')
 @endsection
 @section('content_tittle', 'Tambah Pengguna')
 @section('content')

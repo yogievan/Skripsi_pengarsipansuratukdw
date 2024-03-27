@@ -1,5 +1,5 @@
 <li class="my-2">
-    <a href="{{ route('Dashboard_dosenStaff') }}" class="block p-2 rounded hover:bg-white hover:text-[#006B3F]">
+    <a href="{{ route('Dashboard_dosenStaff') }}" class="block p-2 rounded font-semibold hover:bg-white hover:text-[#006B3F]">
         <i class="fa fa-house mr-3"></i> Dashboard
     </a>
 </li>

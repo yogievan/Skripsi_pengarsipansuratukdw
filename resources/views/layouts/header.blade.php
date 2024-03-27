@@ -1,8 +1,13 @@
 @php
+    use App\Models\User;
+    $id = Auth::user()->id;
+    $user = User::find($id);
     $name = Auth::user()->nama;
+    $username = Auth::user()->username;
     $email = Auth::user()->email;
     $unit = Auth::user()->id_unit;
-    $desc_jabatan = Auth::user()->desc_jabatan;
+    $desc_jabatan = Auth::user()->id_jabatan;
+    $password = Auth::user()->password;
 @endphp
 <header class="border-b shadow-lg bg-[#006B3F] border-green-900 p-4 text-white">
     <div class="flex">
@@ -25,7 +30,7 @@
                     <div class="flex items-center justify-between">
                         <p class="font-bold text-base">Data Pengguna</p>
                         <div>
-                            <button data-modal-target="update_profile" data-modal-toggle="update_profile" type="button" class="text-white w-14 bg-blue-700 hover:bg-blue-500 font-medium rounded-lg text-xs px-3 py-1.5">
+                            <button value="{{ $user -> id }}" data-modal-target="update_profile" data-modal-toggle="update_profile" type="button" class="text-white w-14 bg-blue-700 hover:bg-blue-500 font-medium rounded-lg text-xs px-3 py-1.5">
                                 <i class="fas fa-wrench"></i>
                             </button>
                         </div>
@@ -63,29 +68,34 @@
                             </button>
                         </div>
 
-                        <form class="p-4 md:p-5" action="#" method="#">
+                        <form class="p-4 md:p-5" action="/UpdateUser/{{ $user -> id }}" method="post">
                             @csrf
+                            @method('PUT')
                             <div class="grid gap-4 mb-4 grid-cols-2">
                                 <div class="col-span-2">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" placeholder="Nama Pengguna" required>
+                                    <label class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
+                                    <input type="text" name="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" placeholder="Nama Pengguna" value="{{ $name }}" required>
                                 </div>
                                 <div class="col-span-2">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                    <input type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" readonly>
-                                </div>
-                                <div class="col-span-2 sm:col-span-1">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit</label>
-                                    <input type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" readonly>
-                                </div>
-                                <div class="col-span-2 sm:col-span-1">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jabatan</label>
-                                    <input type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" readonly>
+                                    <label class="block mb-2 text-sm font-medium text-gray-900">Username</label>
+                                    <input type="text" name="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" placeholder="Nama Pengguna" value="{{ $username }}" required>
                                 </div>
                                 <div class="col-span-2">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password Baru</label>
-                                    <input type="email" class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
-                                    <p class="text-[12px] text-red-600">*Note: Bila <b>tidak mengganti Password</b> kosongkan saja!</p>
+                                    <label class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+                                    <input type="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" value="{{ $email }}" readonly>
+                                </div>
+                                <div class="col-span-2 sm:col-span-1">
+                                    <label class="block mb-2 text-sm font-medium text-gray-900">Unit</label>
+                                    <input type="text" name="id_unit" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" value="{{ $unit }}" readonly>
+                                </div>
+                                <div class="col-span-2 sm:col-span-1">
+                                    <label class="block mb-2 text-sm font-medium text-gray-900">Jabatan</label>
+                                    <input type="text" name="id_jabatan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" value="{{ $desc_jabatan }}" readonly>
+                                </div>
+                                <div class="col-span-2">
+                                    <label class="block mb-2 text-sm font-medium text-gray-900">Password Baru</label>
+                                    <input type="password" name="password" class="bg-gray-50 text-gray-900 border border-gray-300 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" placeholder="Wajib Memasukkan Password Baru">
+                                    <p class="text-[12px] text-red-600">*Note: Bila <b>tidak ingin mengganti Password</b> kosongkan saja!</p>
                                 </div>
                             </div>
                             <Button class="bg-[#006B3F] p-3 rounded text-white font-bold w-full hover:bg-[#3bca8f]">Simpan Perubahan</Button>

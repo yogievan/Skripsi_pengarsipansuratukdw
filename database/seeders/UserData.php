@@ -13,34 +13,46 @@ class UserData extends Seeder
      */
     public function run(): void
     {
-        $dataPengguna = [
+        $data = [
             [	
                 'nama' => 'Kepala Bidang Unit',
+                'username' => 'KepalaBidangUnit',
                 'email' => 'yogievan32@gmail.com',
                 'password' => bcrypt('123'),
                 'role' => 'KepalaBidang',
-                'desc_jabatan' => 'Rektor',
-                'id_unit' => '1',
-            ],
-            [	
-                'nama' => 'Dosen FTI',
-                'email' => 'yogi.evan@si.ukdw.ac.id',
-                'password' => bcrypt('123'),
-                'role' => 'DosenStaff',
-                'desc_jabatan' => 'Dosen/Staf Prodi Sistem Informasi',
+                'id_jabatan' => '2',
                 'id_unit' => '2',
             ],
             [	
+                'nama' => 'Dosen FTI',
+                'username' => 'DosenFTI',
+                'email' => 'yogi.evan@si.ukdw.ac.id',
+                'password' => bcrypt('123'),
+                'role' => 'DosenStaff',
+                'id_jabatan' => '19',
+                'id_unit' => '7',
+            ],
+            [	
                 'nama' => 'Sekretariat Rektorat',
+                'username' => 'SekretariatRektorat',
                 'email' => 'yogievan400@gmail.com',
                 'password' => bcrypt('123'),
                 'role' => 'Sekretariat',
-                'desc_jabatan' => 'Sekretariat Rektorat',
-                'id_unit' => '1',
+                'id_jabatan' => '48',
+                'id_unit' => '2',
+            ],
+            [	
+                'nama' => 'Admin',
+                'username' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('123'),
+                'role' => 'Admin',
+                'id_jabatan' => '93',
+                'id_unit' => '32',
             ],
         ];
 
-        foreach($dataPengguna as $val){
+        foreach($data as $val){
             DB::table('users')->insert($val);
         }
     }

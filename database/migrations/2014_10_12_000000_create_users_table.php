@@ -14,15 +14,17 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('email')->unique();
+            $table->string('username')->unique();
+            $table->string('email');
             $table->string('password');
-            $table->enum('role',['KepalaBidang', 'DosenStaff', 'Sekretariat'])->default('DosenStaff');
-            $table->string('desc_jabatan');
+            $table->enum('role',['KepalaBidang', 'DosenStaff', 'Sekretariat', 'Admin'])->default('DosenStaff');
+            $table->foreignId('id_jabatan');
             $table->foreignId('id_unit');
             $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('id_unit')->references('id')->on('unit')->onDelete('cascade');
+            $table->foreign('id_jabatan')->references('id')->on('desc_jabatan')->onDelete('cascade');
         });
     }
 

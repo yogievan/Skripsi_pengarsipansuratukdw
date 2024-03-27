@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
@@ -15,13 +17,13 @@ class AuthController extends Controller
     public function validateLogin(Request $request){
         // validate
         $request -> validate([
-            'email' => 'required|email',
+            'username' => 'required',
             'password' => 'required',
         ]);
 
         // validate input request
         $datalogin = [
-            'email' => $request -> email,
+            'username' => $request -> username,
             'password' => $request -> password,
         ];
 
@@ -36,6 +38,9 @@ class AuthController extends Controller
             elseif(Auth::user()->role == 'Sekretariat'){
                 return redirect(route('Dashboard_sekretariat'))->with('toast_success', 'Login Berhasil, Selamat Datang!');
             }
+            elseif(Auth::user()->role == 'Admin'){
+                return redirect(route('Dashboard_admin'))->with('toast_success', 'Login Berhasil, Selamat Datang!');
+            }
         }
         else{
             return redirect(route('login'))->withErrors('Email atau Password tidak terdaftar!');
@@ -49,7 +54,12 @@ class AuthController extends Controller
     }
 
     // Profile Setting
-    public function ViewProfile(){
-        return view('auth.detail_profile');
-    } 
+    public function updateUser($id, Request $request){
+        $users = User::find($id);
+        $users -> nama = $request -> nama;
+        $users -> username = $request -> username;
+        $users -> password = bcrypt($request -> password);
+        $users -> save();
+        return Redirect::back()->with('toast_success', 'Update Data Pengguna Berhasil!');
+    }
 }

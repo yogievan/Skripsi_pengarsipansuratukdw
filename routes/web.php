@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\dosenStaffController;
 use App\Http\Controllers\kepalaBidangController;
@@ -39,20 +40,24 @@ Route::middleware(['auth'])->group(function(){
         Route::middleware('cekRole:Sekretariat')->group(function () {
             Route::get('/Sekretariat/Dashboard', [sekretariatController::class, 'viewDashboard'])->name('Dashboard_sekretariat');
             Route::get('/Sekretariat/ArsipSurat', [sekretariatController::class, 'viewArsipSurat'])->name('ArsipSurat_sekretariat');
-            Route::get('/Sekretariat/TambahSuratMasuk', [sekretariatController::class, 'viewTambahSuratMasuk'])->name('TambahSuratMasuk_sekretariat');
             Route::get('/Sekretariat/DetailArsipSurat', [sekretariatController::class, 'viewDetailArsipSurat'])->name('DetailArsipSurat_sekretariat');
             Route::get('/Sekretariat/ListSuratMasuk', [sekretariatController::class, 'viewListSuratMasuk'])->name('ListSuratMasuk_sekretariat');
             Route::get('/Sekretariat/ListSuratKeluar', [sekretariatController::class, 'viewListSuratKeluar'])->name('ListSuratKeluar_sekretariat');
             Route::get('/Sekretariat/ListSuratDisposisi', [sekretariatController::class, 'viewListSuratDisposisi'])->name('ListSuratDisposisi_sekretariat');
-            Route::get('/Sekretariat/KelolaPengguna', [sekretariatController::class, 'viewKelolaPengguna'])->name('KelolaPengguna_sekretariat');
-            Route::get('/Sekretariat/TambahPengguna', [sekretariatController::class, 'viewTambahPengguna'])->name('TambahPengguna_sekretariat');
         });
 
+        // USER ADMIN
+        Route::middleware('cekRole:Admin')->group(function () {
+            Route::get('/Admin/Dashboard', [adminController::class, 'viewDashboard'])->name('Dashboard_admin');
+            Route::get('/Admin/KelolaPengguna', [adminController::class, 'viewKelolaPengguna'])->name('KelolaPengguna_admin');
+        });
+        
         // Logout
         Route::get('/Logout',[AuthController::class, 'logout'])->name('logout');
 
         // Profile
-        // Route::get('/Profile',[AuthController::class, 'ViewProfile'])->name('profile');
+        Route::put('/UpdateUser/{id}',[AuthController::class, 'updateUser']);
+
 
     });        
 });

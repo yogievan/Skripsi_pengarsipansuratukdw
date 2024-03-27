@@ -27,9 +27,3 @@
         <i class="fas fa-list-ul mr-3"></i> List Surat Disposisi
     </a>
 </li>
-<hr>
-<li class="my-2">
-    <a href="{{ route('KelolaPengguna_sekretariat') }}" class="block p-2 rounded font-semibold hover:bg-white hover:text-[#006B3F]">
-        <i class="fas fa-user-cog mr-3"></i> Kelola Pengguna
-    </a>
-</li>
