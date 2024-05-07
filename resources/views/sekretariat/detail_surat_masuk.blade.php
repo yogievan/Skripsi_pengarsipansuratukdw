@@ -3,9 +3,8 @@
 @section('menu')
     @include('layouts.menu.sekretariat')
 @endsection
-@section('content_tittle', 'Detail Surat Keluar')
+@section('content_tittle', 'Detail Surat Masuk')
 @section('content')
-<div>
     <div>
         <div class="flex gap-5 mb-3">
             <a href="{{ URL::previous() }}">
@@ -13,29 +12,29 @@
                     <i class="fas fa-angle-double-left text-[18px] my-auto"></i> Back
                 </button>
             </a>
-            <p class="ml-auto my-auto font-bold">Surat Dibuat: {{$suratKeluar -> created_at}}</p>
+            <p class="ml-auto my-auto font-bold">Surat Dibuat: {{$suratMasuk -> created_at}}</p>
         </div>
         <div>
             @php
-                foreach ($suratKeluar as $sm) {
-                    $surat_kasuk = $suratKeluar -> email_pengarsip;
+                foreach ($suratMasuk as $sm) {
+                    $surat_masuk = $suratMasuk -> email_pengarsip;
                     foreach ($users as $u) {
-                        if ($surat_kasuk == $u -> email) {
+                        if ($surat_masuk == $u -> email) {
                             $pengarsip = $u -> nama;
                         }
                     }
                 }
             @endphp
-            <p class="font-normal break-words mb-3">Diarsipkan oleh <b>{{$pengarsip}}</b> ({{$suratKeluar -> email_pengarsip}})</p>
+            <p class="font-normal break-words mb-3">Diarsipkan oleh <b>{{$pengarsip}}</b> ({{$suratMasuk -> email_pengarsip}})</p>
         </div>
         <div class="grid grid-cols-3 gap-5">
             <div class="col-span-2">
-                <embed class="w-[100%] h-[100%] min-h-[500px] desktop:min-h-[800px] rounded-md" src="../arsip/{{$suratKeluar -> berkas}}">
+                <embed class="w-[100%] h-[100%] min-h-[500px] desktop:min-h-[800px] rounded-md" src="../arsip/{{$suratMasuk -> berkas}}">
             </div>
             @php
                 // Nama Kategori
-                foreach ($suratKeluar as $kat) {
-                    $id_kat = $suratKeluar -> id_kategori;
+                foreach ($suratMasuk as $kat) {
+                    $id_kat = $suratMasuk -> id_kategori;
                     foreach ($kategori as $kat) {
                         if ($id_kat == $kat -> id) {
                             $nama_kat = $kat -> kategori;
@@ -43,8 +42,8 @@
                     }
                 }
                 // Nama unit
-                foreach ($suratKeluar as $unt) {
-                    $id_un = $suratKeluar -> id_unit;
+                foreach ($suratMasuk as $unt) {
+                    $id_un = $suratMasuk -> id_unit;
                     foreach ($unit as $unt) {
                         if ($id_un == $unt -> id) {
                             $nama_unt = $unt -> unit;
@@ -52,10 +51,10 @@
                     }
                 }
                 // Nama pengirim                
-                foreach ($suratKeluar as $sm) {
-                    $surat_keluar = $suratKeluar -> email_tujuan;
+                foreach ($suratMasuk as $sm) {
+                    $surat_masuk = $suratMasuk -> email_pengirim;
                     foreach ($users as $u) {
-                        if ($surat_keluar == $u -> email) {
+                        if ($surat_masuk == $u -> email) {
                             $pengirim = $u -> nama;
                         }
                     }
@@ -67,11 +66,7 @@
                     Deskripsi Surat
                 </p>
                 <hr class="my-2">
-                <div >
-                    <div class="mb-2">
-                        <label class="font-normal">Kode Surat</label>
-                        <p class="font-semibold break-words">{{ $suratKeluar -> kode_surat }}</p>
-                    </div>
+                <div>
                     <div class="mb-2">
                         <label class="font-normal">Kategori Surat</label>
                         <p class="font-semibold break-words">{{$nama_kat}}</p>
@@ -82,25 +77,25 @@
                             <p class="font-semibold break-words">{{$nama_unt}}</p>
                         </div>
                         <div class="text-right">
-                            <label class="font-normal">Tujuan Surat</label>
-                            <p class="font-semibold break-words">{{$suratKeluar -> email_tujuan}}</p>
+                            <label class="font-normal">Pengirim Surat</label>
+                            <p class="font-semibold break-words">{{$suratMasuk -> email_pengirim}}</p>
                             <p class="font-semibold break-words">{{$pengirim}}</p>
                         </div>
                     </div>
                     <div class="w-full my-4">
                         <label class="font-normal">Perihal / Subjek</label>
-                        <p class="font-semibold break-words">{{$suratKeluar -> perihal}}</p>
+                        <p class="font-semibold break-words">{{$suratMasuk -> perihal}}</p>
                     </div>
                     <div class="w-full my-4">
                         <label class="font-normal">Keterangan Surat</label>
-                        <p class="font-semibold break-words">{{$suratKeluar -> keterangan}}</p>
+                        <p class="font-semibold break-words">{{$suratMasuk -> keterangan}}</p>
                     </div>
                     <div class="w-full my-4">
                         <label class="font-normal">Status Surat</label>
-                        <p class="font-semibold break-words">{{$suratKeluar -> status}}</p>
+                        <p class="font-semibold break-words">{{$suratMasuk -> status}}</p>
                     </div>
                     <div class="my-2">
-                        <a href="/Sekretariat/UpdateDetailArsipSuratKeluar-{{ $suratKeluar -> id }}">
+                        <a href="/Sekretariat/UpdateDetailArsipSuratMasuk-{{ $suratMasuk -> id }}">
                             <button class="bg-blue-700 p-3 rounded text-white font-semibold m-auto w-full hover:bg-blue-600" onclick="return confirm('Apakah Surat akan divalidasi?')">Validasi Surat</button>
                         </a>
                     </div>
@@ -118,12 +113,11 @@
                 </div>
                 <hr class="my-5">
                 <div>
-                    <a href="/Sekretariat/HapusArsipSuratKeluar-{{ $suratKeluar -> id }}">
+                    <a href="/Sekretariat/HapusArsipSuratMasuk-{{ $suratMasuk -> id }}">
                         <button class="bg-red-600 p-3 rounded text-white font-semibold m-auto w-full hover:bg-red-500" onclick="return confirm('Apakah Surat akan dihapus?')">Hapus Surat</button>
                     </a>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

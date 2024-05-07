@@ -6,17 +6,12 @@
 @section('content_tittle', 'List Surat Masuk')
 @section('content')
     <div>
-        <div class="grid grid-cols-3 gap-4">
-            <div>
-            </div>
-            <div></div>
-            <div class="flex">
-                <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 rounded-e-0 rounded-s-md">
-                    <i class="fas fa-search"></i>
-                </span>
-                <input type="text" class="rounded-none rounded-e-lg bg-white border focus:ring-green-500 focus:border-green-500 block flex-1 min-w-0 w-full text-sm border-gray-200 p-2.5" placeholder="Cari Arsip Surat Masuk">
-              </div>
-            </div>
+        <div class="flex h-[60px] w-[600px] ml-auto">
+            <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 rounded-e-0 rounded-s-md">
+                <i class="fas fa-search"></i>
+            </span>
+            <input type="text" class="rounded-none rounded-e-lg bg-white border focus:ring-green-500 focus:border-green-500 block flex-1 min-w-0 w-full text-sm border-gray-200 p-2.5" placeholder="Cari Arsip Surat Masuk">
+        </div>
 
         {{-- table --}}
         <div class="mt-8">
@@ -37,7 +32,7 @@
                                 File Surat
                             </th>
                             <th scope="col" class="px-6 py-3 text-center border w-[150px]">
-                                Status Surat Keluar / Disposisi
+                                Status Surat
                             </th>
                             <th scope="col" class="px-6 py-3 text-center border w-[200px]">
                                 Aksi
@@ -45,34 +40,60 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 text-center border w-[50px] font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                no
-                            </th>
-                            <td class="px-6 py-4 text-center border w-[100px]">
-                                dd/mm/yyyy
-                            </td>
-                            <td class="px-6 py-4 text-center border w-[350px] break-words">
-                                asdasdasdasda 
-                            </td>
-                            <td class="px-6 py-4 text-center border w-[150px]">
-                                Nama File
-                            </td>
-                            <td class="px-6 py-4 text-center border w-[150px]">
-                                <p class="bg-green-500 text-white p-1 rounded">Sudah Dibuat</p>
-                                <p class="bg-red-500 text-white p-1 rounded">Belum Dibuat</p>
-                            </td>
-                            <td class="flex gap-2 text-center w-[150px] mx-auto my-10">
-                                <a href="{{ route('DetailArsipSurat_sekretariat') }}">
-                                    <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-400">Detail</button>
-                                </a>
-                                <a href="">
-                                    <button class="bg-red-500 p-3 rounded text-white hover:bg-blue-400">Hapus</button>
-                                </a>
-                            </td>
-                        </tr>
+                        @foreach ($suratMasuk as $no => $item)
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 text-center border w-[50px] font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $suratMasuk -> firstItem() + $no}}
+                                </th>
+                                <td class="px-6 py-4 text-center border w-[100px]">
+                                    {{ $item -> created_at }}
+                                </td>
+                                <td class="px-6 py-4 text-center border w-[350px] break-words">
+                                    {{ $item -> perihal }} 
+                                </td>
+                                <td class="px-6 py-4 text-center border w-[150px]">
+                                    {{ $item -> berkas }}
+                                </td>
+                                <td class="px-6 py-4 text-center border w-[150px]">
+                                    @php
+                                        if ( $item -> status == 'Tervalidasi Sekretariat') {
+                                                echo "<p class="."status_green"."> $item->status </p>";
+                                        }else {
+                                            echo "<p class="."status_red"."> $item->status </p>";
+                                        }
+                                    @endphp
+                                </td>
+                                <td class="flex gap-2 px-auto py-4 text-center justify-center w-full">
+                                    <a href="/Sekretariat/DetailArsipSuratMasuk-{{ $item -> id }}">
+                                        <button class="w-[100px] bg-blue-700 p-3 rounded text-white hover:bg-blue-600">Detail Surat</button>
+                                    </a>
+                                    <a href="/Sekretariat/EditArsipSuratMasuk-{{ $item -> id }}">
+                                        <button class="w-[100px] bg-yellow-400 p-3 rounded text-white hover:bg-yellow-300">Edit Surat</button>
+                                    </a>
+                                    <a href="/Sekretariat/HapusArsipSuratMasuk-{{ $item -> id }}">
+                                        <button class="w-[50px] bg-red-600 p-3 rounded text-white hover:bg-red-500" onclick="return confirm('Apakah Surat akan dihapus?')">
+                                            <i class="fas fa-trash-alt text-white"></i>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="flex gap-2 mt-4">
+                <div class="my-auto">
+                    Data
+                    {{ $suratMasuk -> firstItem() }}
+                    sampai
+                    {{ $suratMasuk -> lastItem() }}
+                    dari
+                    {{ $suratMasuk -> total() }}
+                    Surat Masuk
+                </div>
+                <div class="my-auto ml-auto">
+                    {{ $suratMasuk->links() }}
+                </div>
             </div>
         </div>
     </div>

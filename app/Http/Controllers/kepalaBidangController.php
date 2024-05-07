@@ -8,7 +8,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class kepalaBidangController extends Controller
 {
-    public function viewDashboard(){
+    public function ViewDashboard(){
         $nama = Auth::user()->nama;
         return view('kepala_bidang.dashboard',
         [
@@ -17,27 +17,27 @@ class kepalaBidangController extends Controller
     );
     }
 
-    public function viewArsipSurat(){
+    public function ViewArsipSurat(){
         return view('kepala_bidang.arsip_surat');
     }
 
-    public function viewListSuratMasuk(){
+    public function ViewListSuratMasuk(){
         return view('kepala_bidang.list_surat_masuk');
     }
 
-    public function viewListSuratKeluar(){
+    public function ViewListSuratKeluar(){
         return view('kepala_bidang.list_surat_keluar');
     }
 
-    public function viewListSuratDisposisi(){
+    public function ViewListSuratDisposisi(){
         return view('kepala_bidang.list_surat_disposisi');
     }
 
-    public function viewDetailDisposisiSuratMasuk(){
+    public function ViewDetailDisposisiSuratMasuk(){
         return view('kepala_bidang.detail_disposisi_surat_masuk');
     }
     
-    public function viewDetailDisposisiSuratKeluar(){
+    public function ViewDetailDisposisiSuratKeluar(){
         return view('kepala_bidang.detail_disposisi_surat_keluar');
     }
 }

@@ -16,21 +16,24 @@ class KategoriData extends Seeder
         $data = [
             [
                 'kategori'=>'Surat Tugas/Dinas',
+                'deskripsi'=>'Surat yang digunakan untuk menugaskan Perorangan baik Dosen ataupun Staff dalam unit tertentu.',
             ],
             [
                 'kategori'=>'Surat Undangan',
+                'deskripsi'=>'Surat yang digunakan untuk memanggil atau menggundang pihak tertentu dalam suatu kegiatan',
             ],
             [
                 'kategori'=>'Surat Edaran',
+                'deskripsi'=>'Surat yang digunakan untuk memberitahukan sebuah informasi atau penggumuman kepada kalangan tertentu.',
             ],
             [
                 'kategori'=>'Surat Permohonan',
+                'deskripsi'=>'Surat yang digunakan untuk mengajukan permohonan.',
+
             ],
             [
-                'kategori'=>'Surat Keputusan',
-            ],
-            [
-                'kategori'=>'Surat Pengantar',
+                'kategori'=>'Surat Peringatan',
+                'deskripsi'=>'Surat yang digunakan untuk memberikan informasi peringatan terhadap peanggaran yang dilakukan.',
             ],
             
         ];

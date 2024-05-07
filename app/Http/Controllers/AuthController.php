@@ -10,11 +10,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
-    public function viewLogin(){
+    public function ViewLogin(){
         return view('auth.login');
     }
 
-    public function validateLogin(Request $request){
+    public function ValidateLogin(Request $request){
         // validate
         $request -> validate([
             'username' => 'required',
@@ -39,7 +39,7 @@ class AuthController extends Controller
                 return redirect(route('Dashboard_sekretariat'))->with('toast_success', 'Login Berhasil, Selamat Datang!');
             }
             elseif(Auth::user()->role == 'Admin'){
-                return redirect(route('Dashboard_admin'))->with('toast_success', 'Login Berhasil, Selamat Datang!');
+                return redirect(route('KelolaPengguna_admin'))->with('toast_success', 'Login Berhasil, Selamat Datang!');
             }
         }
         else{
@@ -48,13 +48,13 @@ class AuthController extends Controller
     }
 
     // logout
-    public function logout(){
+    public function Logout(){
         Auth::logout();
         return redirect(route('login'));
     }
 
     // Profile Setting
-    public function updateUser($id, Request $request){
+    public function UpdateUser($id, Request $request){
         $users = User::find($id);
         $users -> nama = $request -> nama;
         $users -> username = $request -> username;

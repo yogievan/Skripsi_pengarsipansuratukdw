@@ -11,7 +11,7 @@
                 <p>Disposisi Surat Masuk</p>
             </div>
             <div></div>
-            <div class="flex">
+            <div class="flex h-[60px]"">
                 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 rounded-e-0 rounded-s-md">
                     <i class="fas fa-search"></i>
                 </span>
@@ -63,8 +63,8 @@
                                 <p>Sudah dikirim ke "Nama Tujuan"</p>
                             </td>
                             <td class="flex gap-2 text-center w-[150px] mx-auto my-10">
-                                <a href="{{ route('DetailArsipSurat_sekretariat') }}">
-                                    <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-400">Detail</button>
+                                <a href="">
+                                    <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-600">Detail</button>
                                 </a>
                                 <a href="">
                                     <button class="bg-red-500 p-3 rounded text-white hover:bg-red-400">Hapus</button>
@@ -83,7 +83,7 @@
                 <p>Disposisi Surat Keluar</p>
             </div>
             <div></div>
-            <div class="flex">
+            <div class="flex h-[60px]"">
                 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 rounded-e-0 rounded-s-md">
                     <i class="fas fa-search"></i>
                 </span>
@@ -135,8 +135,8 @@
                                 <p>Sudah dikirim ke "Nama Tujuan"</p>
                             </td>
                             <td class="flex gap-2 text-center w-[150px] mx-auto my-10">
-                                <a href="{{ route('DetailArsipSurat_sekretariat') }}">
-                                    <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-400">Detail</button>
+                                <a href="">
+                                    <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-600">Detail</button>
                                 </a>
                                 <a href="">
                                     <button class="bg-red-500 p-3 rounded text-white hover:bg-red-400">Hapus</button>

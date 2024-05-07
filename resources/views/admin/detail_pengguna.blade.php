@@ -20,16 +20,12 @@
             <p class="text-[20px] break-words">{{ $user -> username }}</p>
         </div>
         <div class="py-2">
-            <label class="font-normal">Password</label>
-            <p class="text-[20px] break-words">{{ $user -> password }}</p>
+            <label class="font-normal">Unit</label>
+            <p class="text-[20px] break-words">{{ $user -> id_unit }}</p>
         </div>
         <div class="py-2">
             <label class="font-normal">Role / Jabatan</label>
             <p class="text-[20px] break-words">{{ $user -> role }}</p>
-        </div>
-        <div class="py-2">
-            <label class="font-normal">Unit</label>
-            <p class="text-[20px] break-words">{{ $user -> id_unit }}</p>
         </div>
         <div class="py-2">
             <label class="font-normal">Deskripsi Jabatan</label>

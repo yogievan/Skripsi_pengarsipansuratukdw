@@ -13,14 +13,19 @@ return new class extends Migration
     {
         Schema::create('surat_keluar', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_surat_masuk');
+            $table->foreignId('id_kategori');
+            $table->foreignId('id_unit');
             $table->string('kode_surat');
+            $table->string('email_tujuan');
             $table->string('perihal');
             $table->string('keterangan');
             $table->string('berkas');
+            $table->string('status');
+            $table->string('email_pengarsip');
             $table->timestamps();
 
-            $table->foreign('id_surat_masuk')->references('id')->on('surat_masuk')->onDelete('cascade');
+            $table->foreign('id_kategori')->references('id')->on('kategori')->onDelete('cascade');
+            $table->foreign('id_unit')->references('id')->on('unit')->onDelete('cascade');
         });
     }
 

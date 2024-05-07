@@ -25,40 +25,50 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    
+    <link rel="manifest" href="/site.webmanifest">   
 </head>
 <body>
-    {{-- Header --}}
-    @include('layouts.header')
-
-    <div class="flex">
-        {{-- Sidebar --}}
-        <aside class="bg-[#006B3F] border-gray-700 text-white w-64 min-h-screen p-4 ">
-            <p class="font-semibold text-[24px]">MENU</p>
-            <nav>
-                <ul>
-                    @yield('menu')
-                </ul>
-            </nav>
-        </aside>
-    
-        {{-- Main Content --}}
-        <main class="flex p-4">
-            {{-- content --}}
-            <div class="py-3 pl-5 pr-5 font-bold">
-                <p class="text-[1.5em] font-extrabold my-auto mb-3">
-                    @yield('content_tittle')
-                </p>
-                
-                {{-- content components --}}
-                @yield('content')
+    <div class="grid">
+        <div class="flex">
+            <div class="w-[300px]">
+                {{-- Sidebar --}}
+                <aside class="bg-[#006B3F] border-gray-700 text-white h-[100%] p-4">
+                    <div class="flex gap-1">
+                        <img class="w-[2.75rem] h-[3.75rem] mr-2 my-auto" src="../assets/img/UKDW.png" alt="UKDW">
+                        <h1 class="text-xl font-semibold my-auto">
+                            ARSIP SURAT
+                        </h1>
+                    </div>
+                    <p class="font-semibold text-[24px] my-3">MENU</p>
+                    <nav>
+                        <ul class="mt-5">
+                            @yield('menu')
+                        </ul>
+                    </nav>
+                </aside>
             </div>
-        </main>
-    </div>
+            <div class="w-[100%] m-3">
+                {{-- Header --}}
+                @include('layouts.header')
 
-    {{-- Footer --}}
-    @include('layouts.footer')
+                {{-- Main Content --}}
+                <main>
+                    {{-- optional content --}}
+                    @yield('optional_content')
+
+                    {{-- content 2 --}}
+                    <div class="bg-white rounded-md border shadow mt-5 p-4 min-h-[670px]">
+                        {{-- content components --}}
+                        @yield('content')
+                    </div>
+                </main>
+            </div>
+        </div>
+        <div>
+            {{-- Footer --}}
+            @include('layouts.footer')
+        </div>
+    </div>
 </body>
 @include('sweetalert::alert')
 </html>

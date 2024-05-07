@@ -8,7 +8,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class dosenStaffController extends Controller
 {
-    public function viewDashboard(){
+    public function ViewDashboard(){
         $nama = Auth::user()->nama;
         return view('dosen_staff.dashboard',
         [
@@ -16,19 +16,19 @@ class dosenStaffController extends Controller
         ]
     );
     }
-    public function viewArsipSurat(){
+    public function ViewArsipSurat(){
         return view('dosen_staff.arsip_surat');
     }
 
-    public function viewListSuratMasuk(){
+    public function ViewListSuratMasuk(){
         return view('dosen_staff.list_surat_masuk');
     }
 
-    public function viewListSuratKeluar(){
+    public function ViewListSuratKeluar(){
         return view('dosen_staff.list_surat_keluar');
     }
     
-    public function viewListSuratDisposisi(){
+    public function ViewListSuratDisposisi(){
         return view('dosen_staff.list_surat_disposisi');
     }
 }

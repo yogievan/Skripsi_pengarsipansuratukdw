@@ -9,7 +9,7 @@
         <div class="grid grid-cols-3 gap-4">
             <div>
                 {{-- Tambah Akun Pengguna --}}
-                <button data-modal-target="tambah_akun" data-modal-toggle="tambah_akun" class="bg-[#006B3F] p-3 rounded text-white font-semibold mt-3 hover:bg-[#1c9e68]">Buat Akun Baru</button>
+                <button data-modal-target="tambah_akun" data-modal-toggle="tambah_akun" class="bg-[#006B3F] p-3 rounded text-white font-semibold mt-3 hover:bg-[#018951]">Buat Akun Baru</button>
 
                 {{-- Modal/ jendela Tambah Akun Pengguna --}}
                 <div id="tambah_akun" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -35,7 +35,7 @@
                                     <div class="col-span-3">
                                         <div class="py-2">
                                             <label>Nama Lengkap</label>
-                                            <input type="text" name="nama" placeholder="Masukkan Nama Peengguna" class="block bg-white rounded w-full outline-none p-2 font-normal focus:ring-green-500 focus:border-green-500" required>
+                                            <input type="text" name="nama" placeholder="Masukkan Nama Pengguna" class="block bg-white rounded w-full outline-none p-2 font-normal focus:ring-green-500 focus:border-green-500" required>
                                         </div>
                                         <div class="py-2">
                                             <label>Email</label>
@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <button class="bg-[#006B3F] p-3 rounded text-white font-semibold mt-3 hover:bg-[#1c9e68] w-[200px]">Buat Akun</button>
+                                    <button class="bg-[#006B3F] p-3 rounded text-white font-semibold mt-3 hover:bg-[#018951] w-[200px]">Buat Akun</button>
                                 </div>
                             </form>
                         </div>
@@ -165,6 +165,20 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="flex gap-2 mt-4">
+                <div class="my-auto">
+                    Data
+                    {{ $users -> firstItem() }}
+                    sampai
+                    {{ $users -> lastItem() }}
+                    dari
+                    {{ $users -> total() }}
+                    Pengguna
+                </div>
+                <div class="my-auto ml-auto">
+                    {{ $users -> links() }}
+                </div>
             </div>
         </div>
     </div>

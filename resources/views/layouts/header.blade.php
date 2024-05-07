@@ -2,6 +2,7 @@
     use App\Models\User;
     use App\Models\Unit;
     use App\Models\Jabatan;
+
     $id = Auth::user()->id;
     $user = User::find($id);
     $name = Auth::user()->nama;
@@ -23,20 +24,17 @@
         }
     }
 @endphp
-<header class="border-b shadow-lg bg-[#006B3F] border-green-900 p-4 text-white">
-    <div class="flex">
-        <div class="flex gap-2">
-            <img class="w-[2.75rem] h-[3.75rem] mr-2 my-auto" src="../assets/img/UKDW.png" alt="UKDW">
-            <h1 class="text-2xl font-semibold my-auto">
-                Sistem Informasi Pengarsipan Surat
-            </h1>
-        </div>
+<header class="bg-white p-4 rounded-md border shadow">
+    <div class="flex m-auto">
+        <p class="text-[1.5em] font-extrabold my-auto mb-3">
+            @yield('content_tittle')
+        </p>
         <p class="ml-auto mr-5 my-auto font-semibold">
             {{ $name }}
         </p>
         <div class="mr-10 my-auto">
-            <button data-popover-target="popover-user-profile" type="button" class="w-[50px] bg-white p-1 rounded-full border">
-                <img class="rounded-full" src="../assets/profile/profile_default.png" />
+            <button data-popover-target="popover-user-profile" type="button" class="w-[50px] bg-white p-1 rounded-full border shadow">
+                <img class="rounded-full" src="../assets/img/profile_default.png" />
             </button>
 
             <div data-popover id="popover-user-profile" role="tooltip" class="absolute z-10 invisible inline-block w-72 h-auto text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-md opacity-0">
@@ -44,7 +42,7 @@
                     <div class="flex items-center justify-between">
                         <p class="font-bold text-base">Data Pengguna</p>
                         <div>
-                            <button value="{{ $user -> id }}" data-modal-target="update_profile" data-modal-toggle="update_profile" type="button" class="text-white w-14 bg-blue-700 hover:bg-blue-500 font-medium rounded-lg text-xs px-3 py-1.5">
+                            <button value="{{ $user -> id }}" data-modal-target="update_profile" data-modal-toggle="update_profile" type="button" class="text-white w-14 bg-blue-700 hover:bg-blue-600 font-medium rounded-lg text-xs px-3 py-1.5">
                                 <i class="fas fa-wrench"></i>
                             </button>
                         </div>
@@ -53,12 +51,12 @@
                 <div class="px-3 py-2">
                     <p class="text-base font-semibold leading-none text-gray-900 mb-1">{{ $name }}</p>
                     <p class="text-[14px] font-normal leading-none text-gray-900 mb-[20px]">{{ $email }}</p>
-                    <p class="text-base font-semibold leading-none text-gray-900 mb-1">{{ $unit }}</p>
-                    <p class="text-[14px] font-normal leading-none text-gray-900 mb-3">{{ $desc_jabatan }}</p>
+                    <p class="text-base font-semibold leading-none text-gray-900 mb-1">{{ $unt_name }}</p>
+                    <p class="text-[14px] font-normal leading-none text-gray-900 mb-3">{{ $jbn_name }}</p>
                 </div>
                 <div class="px-3 py-2 bg-gray-100 border-t border-gray-200 right-0">
                     <a href="{{ route('logout') }}">
-                        <button class="w-full bg-red-600 text-white font-bold py-2 px-4 rounded-2xl border hover:bg-red-400 hover:text-white hover:shadow" title="Keluar">
+                        <button class="w-full bg-red-600 text-white font-bold py-2 px-4 rounded-2xl border hover:bg-red-500 hover:text-white hover:shadow" title="Keluar">
                             LOG OUT <i class="fas fa-sign-out-alt"></i>
                         </button>
                     </a>
@@ -82,34 +80,36 @@
                             </button>
                         </div>
 
-                        <form class="p-4 md:p-5" action="/UpdateUser/{{ $user -> id }}" method="post">
+                        <form class="p-4" action="/UpdateUser/{{ $user -> id }}" method="post">
                             @csrf
                             @method('PUT')
+                            <div class="w-[150px] bg-white p-1 rounded-full border shadow mx-auto">
+                                <img class="rounded-full" src="../assets/img/profile_default.png" />
+                            </div>
                             <div class="grid gap-4 mb-4 grid-cols-2">
-                                <div class="col-span-2">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
+                                <div class="col-span-2 w-full">
+                                    <label class="block mb-2 text-sm font-bold text-gray-900">Nama</label>
                                     <input type="text" name="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" placeholder="Nama Pengguna" value="{{ $name }}" required>
                                 </div>
                                 <div class="col-span-2">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900">Username</label>
+                                    <label class="block mb-2 text-sm font-bold text-gray-900">Username</label>
                                     <input type="text" name="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" placeholder="Nama Pengguna" value="{{ $username }}" required>
                                 </div>
                                 <div class="col-span-2">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+                                    <label class="block mb-2 text-sm font-bold text-gray-900">Email</label>
                                     <input type="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" value="{{ $email }}">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900">Unit</label>
+                                    <label class="block mb-2 text-sm font-bold text-gray-900">Unit</label>
                                     <input type="text" name="id_unit" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" value="{{ $unt_name }}" readonly>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900">Jabatan</label>
+                                    <label class="block mb-2 text-sm font-bold text-gray-900">Jabatan</label>
                                     <input type="text" name="id_jabatan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" value="{{ $jbn_name }}" readonly>
                                 </div>
                                 <div class="col-span-2">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                                    <input type="password" name="password" class="bg-gray-50 text-gray-900 border border-gray-300 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" placeholder="Wajib Memasukkan Password Lama / Buat Baru">
-                                    <p class="text-[14px] text-red-600">*Note: Bila <b>tidak ingin mengganti Password</b> kosongkan saja!</p>
+                                    <label class="block mb-2 text-sm font-bold text-gray-900">Password</label>
+                                    <input type="password" name="password" class="bg-gray-50 text-gray-900 border border-gray-300 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" placeholder="Wajib Memasukkan Password Lama / Buat Baru untuk Validasi">
                                 </div>
                             </div>
                             <Button class="bg-[#006B3F] p-3 rounded text-white font-bold w-full hover:bg-[#3bca8f]">Simpan Perubahan</Button>
