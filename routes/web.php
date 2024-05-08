@@ -57,6 +57,8 @@ Route::middleware(['auth'])->group(function(){
             Route::put('/Sekretariat/EditArsipSuratKeluarSubmit-{id}', [sekretariatController::class, 'EditArsipSuratKeluar_updated']);
             Route::get('/Sekretariat/HapusArsipSuratMasuk-{id}', [sekretariatController::class, 'HapusArsipSuratMasuk'])->name('HapusArsipSuratMasuk_sekretariat');
             Route::get('/Sekretariat/HapusArsipSuratKeluar-{id}', [sekretariatController::class, 'HapusArsipSuratKeluar'])->name('HapusArsipSuratKeluar_sekretariat');
+            Route::post('/Sekretariat/TambahDisposisiSuratMasuk', [sekretariatController::class, 'TambahArsipDisposisiSuratMasuk'])->name('TambahArsipDisposisiSuratMasuk_sekretariat');
+            Route::post('/Sekretariat/TambahDisposisiSuratKeluar', [sekretariatController::class, 'TambahArsipDisposisiSuratKeluar'])->name('TambahArsipDisposisiSuratKeluar_sekretariat');
         });
 
         // USER ADMIN

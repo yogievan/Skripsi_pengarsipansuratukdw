@@ -40,31 +40,33 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($disposisiSuratKeluar as $no => $item)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <th scope="row" class="px-6 py-4 text-center border w-[50px] font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                no
+                                {{ $disposisiSuratKeluar -> firstItem() + $no}}
                             </th>
                             <td class="px-6 py-4 text-center border w-[100px]">
-                                dd/mm/yyyy
+                                {{ $item -> created_at }}
                             </td>
-                            <td class="px-6 py-4 text-center border w-[350px] break-words">
-                                asdasdasdasda 
-                            </td>
-                            <td class="px-6 py-4 text-center border w-[150px]">
-                                Nama File
+                            <td class="px-6 py-4 border w-[350px] break-words">
+                                {{ $item -> catatan }}
                             </td>
                             <td class="px-6 py-4 text-center border w-[150px]">
-                                <p>Sudah dikirim ke "Nama Tujuan"</p>
+                                {{ $item -> lampiran }}
                             </td>
-                            <td class="flex gap-2 text-center w-[150px] mx-auto my-10">
+                            <td class="px-6 py-4 text-center border w-[150px]">
+                                <p class="status_green">{{ $item -> status }}</p>
+                            </td>
+                            <td class="flex gap-2 text-center w-[200px] mx-auto my-10">
                                 <a href="">
-                                    <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-600">Detail</button>
+                                    <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-600">Detail Disposisi</button>
                                 </a>
                                 <a href="">
                                     <button class="bg-red-500 p-3 rounded text-white hover:bg-red-400">Hapus</button>
                                 </a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

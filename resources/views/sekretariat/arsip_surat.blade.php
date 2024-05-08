@@ -191,7 +191,7 @@
                             <th scope="col" class="px-6 py-3 text-center border w-[100px]">
                                 Tanggal
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center border w-[350px]">
+                            <th scope="col" class="px-6 py-3 text-center border w-[300px]">
                                 Perihal Surat
                             </th>
                             <th scope="col" class="px-6 py-3 text-center border w-[150px]">
@@ -214,7 +214,7 @@
                                 <td class="px-6 py-4 text-center border w-[100px] break-words">
                                     {{ $item -> created_at }}
                                 </td>
-                                <td class="px-6 py-4 text-center border w-[350px] break-words">
+                                <td class="px-6 py-4 border w-[300px] break-words">
                                     {{ $item -> perihal }} 
                                 </td>
                                 <td class="px-6 py-4 text-center border w-[150px] break-words">
@@ -273,7 +273,7 @@
                             <th scope="col" class="px-6 py-3 text-center border w-[50px]">
                                 No
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center border w-[100px]">
+                            <th scope="col" class="px-6 py-3 text-center border w-[75px]">
                                 Tanggal
                             </th>
                             <th scope="col" class="px-6 py-3 text-center border w-[100px]">
@@ -299,13 +299,13 @@
                             <td scope="row" class="px-6 py-4 text-center border w-[50px] font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $suratKeluar -> firstItem() + $no}}
                             </td>
-                            <td class="px-6 py-4 text-center border w-[100px] break-words">
+                            <td class="px-6 py-4 text-center border w-[75px] break-words">
                                 {{ $item -> created_at }}
                             </td>
                             <td class="px-6 py-4 text-center border w-[100px] break-words">
                                 {{ $item -> kode_surat }}
                             </td>
-                            <td class="px-6 py-4 text-center border w-[300px] break-words">
+                            <td class="px-6 py-4 border w-[300px] break-words">
                                 {{ $item -> perihal }} 
                             </td>
                             <td class="px-6 py-4 text-center border w-[150px] break-words">

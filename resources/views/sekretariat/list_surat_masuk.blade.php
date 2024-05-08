@@ -48,7 +48,7 @@
                                 <td class="px-6 py-4 text-center border w-[100px]">
                                     {{ $item -> created_at }}
                                 </td>
-                                <td class="px-6 py-4 text-center border w-[350px] break-words">
+                                <td class="px-6 py-4 border w-[350px] break-words">
                                     {{ $item -> perihal }} 
                                 </td>
                                 <td class="px-6 py-4 text-center border w-[150px]">

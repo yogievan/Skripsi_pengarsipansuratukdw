@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DisposisiSuratKeluar;
+use App\Models\DisposisiSuratMasuk;
 use App\Models\Kategori;
+use App\Models\Sifat;
 use App\Models\SuratKeluar;
 use App\Models\SuratMasuk;
 use App\Models\Unit;
@@ -67,12 +70,14 @@ class sekretariatController extends Controller
         $users = User::all();
         $unit = Unit::all();
         $kategori = Kategori::all();
+        $sifat = Sifat::all();
 
         return view('sekretariat.detail_surat_masuk',[
             'suratMasuk' => $suratMasuk,
             'users' => $users,
             'unit' => $unit,
             'kategori' => $kategori,
+            'sifat' => $sifat,
         ]);
     }
     public function EditArsipSuratMasuk($id){
@@ -111,12 +116,14 @@ class sekretariatController extends Controller
         $users = User::all();
         $unit = Unit::all();
         $kategori = Kategori::all();
+        $sifat = Sifat::all();
 
         return view('sekretariat.detail_surat_keluar',[
             'suratKeluar' => $suratKeluar,
             'users' => $users,
             'unit' => $unit,
             'kategori' => $kategori,
+            'sifat' => $sifat,
         ]);
     }
     public function EditArsipSuratKeluar($id){
@@ -176,9 +183,44 @@ class sekretariatController extends Controller
     }
 
     public function ViewListDisposisiSuratMasuk(){
-        return view('sekretariat.list_surat_disposisi_surat_masuk');
+        $disposisiSuratMasuk  = DisposisiSuratMasuk::orderBy('id', 'DESC')->paginate(25);
+        return view('sekretariat.list_surat_disposisi_surat_masuk',[
+            'disposisiSuratMasuk' => $disposisiSuratMasuk,
+        ]);
     }
+
+    public function TambahArsipDisposisiSuratMasuk(Request $request){
+        DisposisiSuratMasuk::create([
+            'id_sifat' => $request -> id_sifat,
+            'id_surat_masuk' => $request -> id_surat_masuk,
+            'email_tujuan' => $request -> email_tujuan,
+            'catatan' => $request -> catatan,
+            'lampiran' => $request -> lampiran,
+            'status' => $request -> status,
+            'email_pengarsip' => $request -> email_pengarsip,
+
+        ]);
+        return redirect(route('ListDisposisiSuratMasuk_sekretariat'))->with('toast_success', 'Surat Berhasil di Disposisi'); 
+    }
+
     public function ViewListDisposisiSuratKeluar(){
-        return view('sekretariat.list_surat_disposisi_surat_keluar');
+        $disposisiSuratKeluar  = DisposisiSuratKeluar::orderBy('id', 'DESC')->paginate(25);
+        return view('sekretariat.list_surat_disposisi_surat_keluar',[
+            'disposisiSuratKeluar' => $disposisiSuratKeluar,
+        ]);
+    }
+
+    public function TambahArsipDisposisiSuratKeluar(Request $request){
+        DisposisiSuratKeluar::create([
+            'id_sifat' => $request -> id_sifat,
+            'id_surat_keluar' => $request -> id_surat_keluar,
+            'email_tujuan' => $request -> email_tujuan,
+            'catatan' => $request -> catatan,
+            'lampiran' => $request -> lampiran,
+            'status' => $request -> status,
+            'email_pengarsip' => $request -> email_pengarsip,
+
+        ]);
+        return redirect(route('ListDisposisiSuratKeluar_sekretariat'))->with('toast_success', 'Surat Berhasil di Disposisi'); 
     }
 }

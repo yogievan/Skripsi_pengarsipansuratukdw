@@ -6,7 +6,7 @@
 @section('content_tittle', 'Edit Arsip Surat Masuk')
 @section('content')
 <div class="flex gap-5 mb-3">
-    <a href="{{ route('ArsipSurat_sekretariat') }}">
+    <a href="{{ URL::previous() }}">
         <button class="p-2 bg-slate-600 text-white rounded-md text-[18px] my-auto">
             <i class="fas fa-angle-double-left text-[18px] my-auto"></i> Back
         </button>

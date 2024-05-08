@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_sifat');
             $table->foreignId('id_surat_masuk');
-            $table->foreignId('id_user_tujuan');
+            $table->string('email_tujuan');
             $table->string('catatan');
             $table->string('lampiran');
             $table->string('status');
+            $table->string('email_pengarsip');
             $table->timestamps();
 
             $table->foreign('id_sifat')->references('id')->on('sifat')->onDelete('cascade');
             $table->foreign('id_surat_masuk')->references('id')->on('surat_masuk')->onDelete('cascade');
-            $table->foreign('id_user_tujuan')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

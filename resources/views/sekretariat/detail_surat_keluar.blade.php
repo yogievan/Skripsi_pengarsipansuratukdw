@@ -107,20 +107,72 @@
                 </div>
                 <hr class="my-5">
                 <div class="my-2">
-                    <a href="">
-                        <button class="bg-[#006B3F] p-3 rounded text-white font-semibold m-auto w-full hover:bg-[#018951]">Buat Surat Keluar</button>
-                    </a>
-                </div>
-                <div class="my-2">
-                    <a href="">
-                        <button class="bg-[#006B3F] p-3 rounded text-white font-semibold m-auto w-full hover:bg-[#018951]">Buat Disposisi Surat Masuk</button>
-                    </a>
+                    <button data-modal-target="tambah_disposisi_surat_keluar" data-modal-toggle="tambah_disposisi_surat_keluar" class="bg-[#006B3F] p-3 rounded text-white font-semibold m-auto w-full hover:bg-[#018951]">Buat Disposisi Surat Keluar</button>
                 </div>
                 <hr class="my-5">
                 <div>
                     <a href="/Sekretariat/HapusArsipSuratKeluar-{{ $suratKeluar -> id }}">
                         <button class="bg-red-600 p-3 rounded text-white font-semibold m-auto w-full hover:bg-red-500" onclick="return confirm('Apakah Surat akan dihapus?')">Hapus Surat</button>
                     </a>
+                </div>
+            </div>
+        </div>
+
+        {{-- Modal Buat disposisi surat keluar --}}
+        <div id="tambah_disposisi_surat_keluar" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative p-4 w-full max-w-[1000px] max-h-full">
+                <div class="relative bg-white rounded-lg shadow p-4">
+                    {{-- head modal --}}
+                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                            Buat Disposisi Surat Keluar
+                        </h3>
+                        <button data-modal-toggle="tambah_disposisi_surat_keluar" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+
+                    {{-- body modal --}}
+                    <form action="{{ route('TambahArsipDisposisiSuratKeluar_sekretariat') }}" method="POST">
+                        @csrf
+                        <div class="col-span-2">
+                            <label class="font-semibold">Sifat Berkas</label>
+                            <select name="id_sifat" class="bg-white p-2 rounded outline-none w-full font-normal focus:ring-green-500 focus:border-green-500" required>
+                                <option selected>Pilih Sifat Berkas Disposisi</option>
+                                @foreach ($sifat as $item)
+                                    <option value="{{ $item -> id }}">{{ $item -> sifat_surat }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="my-2">
+                            <label class="font-semibold">Tujuan Surat</label>
+                            <input name="email_tujuan" type="email" class="block bg-white rounded w-full outline-none p-2 font-normal focus:ring-green-500 focus:border-green-500" required>
+                        </div>
+                        <div class="my-2">
+                            <label class="font-semibold">Catatan</label><br>
+                            <textarea name="catatan"  class="block bg-white w-full h-[200px] rounded font-normal focus:ring-green-500 focus:border-green-500">{{ $suratKeluar -> keterangan }}</textarea>
+                        </div>
+                        <div class="my-2">
+                            <label class="font-semibold">Upload Berkas Surat</label>
+                            <input name="lampiran" class="block w-[50%] text-sm text-gray-500 border border-[#006B3F] rounded cursor-pointer bg-white focus:outline-none" type="file" required>
+                            Nama Berkas Sebelumnya: {{ $suratKeluar -> berkas }}
+                        </div>
+                        <div class="mt-[30px]">
+                            <Button class="bg-[#006B3F] p-3 rounded text-white w-[200px] font-semibold hover:bg-[#018951]" onclick="return confirm('Apakah Data telah diisi dengan benar?')">Simpan & Kirim</Button>
+                        </div>
+                        <p class="text-red-600 mt-1 font-normal">
+                            *Note: Pastikan Berkas yang di Upload sudah sesuai!
+                        </p>
+                        <input name="id_surat_keluar" type="number" value={{ $suratKeluar -> id }} hidden>
+                        <input name="status" type="text" value="Disposisi Dikirim" hidden>
+                        @php
+                            $email = Auth::user()->email;
+                        @endphp
+                        <input name="email_pengarsip" type="email" value="{{ $email }}" hidden>
+                    </form>
                 </div>
             </div>
         </div>
