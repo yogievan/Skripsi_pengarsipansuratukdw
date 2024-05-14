@@ -199,4 +199,28 @@ class kepalaBidangController extends Controller
             'disposisiSuratKeluar' => $disposisiSuratKeluar,
         ]);
     }
+
+    public function DetailDisposisiSuratMasuk($id){
+        $disposisiSuratMasuk = DisposisiSuratMasuk::find($id);
+        $users = User::all();
+        $sifat = Sifat::all();
+
+        return view('kepala_bidang.detail_disposisi_surat_masuk',[
+            'disposisiSuratMasuk' => $disposisiSuratMasuk,
+            'sifat' => $sifat,
+            'users' => $users,
+        ]);
+    }
+
+    public function DetailDisposisiSuratKeluar($id){
+        $disposisiSuratKeluar = DisposisiSuratKeluar::find($id);
+        $users = User::all();
+        $sifat = Sifat::all();
+
+        return view('kepala_bidang.detail_disposisi_surat_keluar',[
+            'disposisiSuratKeluar' => $disposisiSuratKeluar,
+            'sifat' => $sifat,
+            'users' => $users,
+        ]);
+    }
 }

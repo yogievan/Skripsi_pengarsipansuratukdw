@@ -58,7 +58,7 @@
                                 <p class="status_green">{{ $item -> status }}</p>
                             </td>
                             <td class="text-center w-[200px] mx-auto my-10">
-                                <a href="">
+                                <a href="/DosenStaff/DetailDisposisiSuratKeluar-{{ $item -> id }}">
                                     <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-600">Detail Disposisi</button>
                                 </a>
                             </td>

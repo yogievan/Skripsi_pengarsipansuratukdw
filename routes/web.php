@@ -33,6 +33,8 @@ Route::middleware(['auth'])->group(function(){
             
             Route::get('/KepalaBidang/ListDisposisiSuratMasuk', [kepalaBidangController::class, 'ViewListDisposisiSuratMasuk'])->name('ListDisposisiSuratMasuk_kepalaBidang');
             Route::get('/KepalaBidang/ListDisposisiSuratKeluar', [kepalaBidangController::class, 'ViewListDisposisiSuratKeluar'])->name('ListDisposisiSuratKeluar_kepalaBidang');
+            Route::get('/KepalaBidang/DetailDisposisiSuratMasuk-{id}', [kepalaBidangController::class, 'DetailDisposisiSuratMasuk']);
+            Route::get('/KepalaBidang/DetailDisposisiSuratKeluar-{id}', [kepalaBidangController::class, 'DetailDisposisiSuratKeluar']);
         });
 
         // USER DOSEN DAN STAFF
@@ -45,6 +47,8 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/DosenStaff/DetailArsipSuratKeluar-{id}', [dosenStaffController::class, 'DetailArsipSuratKeluar']);
             Route::get('/DosenStaff/ListDisposisiSuratMasuk', [dosenStaffController::class, 'ViewListDisposisiSuratMasuk'])->name('ListDisposisiSuratMasuk_dosenStaff');
             Route::get('/DosenStaff/ListDisposisiSuratKeluar', [dosenStaffController::class, 'ViewListDisposisiSuratKeluar'])->name('ListDisposisiSuratKeluar_dosenStaff');
+            Route::get('/DosenStaff/DetailDisposisiSuratMasuk-{id}', [dosenStaffController::class, 'DetailDisposisiSuratMasuk']);
+            Route::get('/DosenStaff/DetailDisposisiSuratKeluar-{id}', [dosenStaffController::class, 'DetailDisposisiSuratKeluar']);
         });
 
         // USER SEKRETARIAT

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DisposisiSuratKeluar;
 use App\Models\DisposisiSuratMasuk;
 use App\Models\Kategori;
+use App\Models\Sifat;
 use App\Models\SuratKeluar;
 use App\Models\SuratMasuk;
 use App\Models\Unit;
@@ -26,7 +27,7 @@ class dosenStaffController extends Controller
 
     public function ViewListSuratMasuk(){
         $email = Auth::user()->email;
-        $suratMasuk = SuratMasuk::orderBy('id','ASC')->where('email_tujuan', $email)->paginate(5);
+        $suratMasuk = SuratMasuk::orderBy('id','ASC')->where('email_tujuan', $email)->where('status', 'Tervalidasi Sekretariat')->paginate(25);
         return view('dosen_staff.list_surat_masuk',[
             'suratMasuk' => $suratMasuk
         ]);
@@ -47,7 +48,7 @@ class dosenStaffController extends Controller
 
     public function ViewListSuratKeluar(){
         $email = Auth::user()->email;
-        $suratKeluar = SuratKeluar::orderBy('id','ASC')->where('email_tujuan', $email)->paginate(5);
+        $suratKeluar = SuratKeluar::orderBy('id','ASC')->where('email_tujuan', $email)->where('status', 'Tervalidasi Sekretariat')->paginate(25);
         return view('dosen_staff.list_surat_keluar',[
             'suratKeluar' => $suratKeluar,
         ]);
@@ -80,6 +81,30 @@ class dosenStaffController extends Controller
         $disposisiSuratKeluar  = DisposisiSuratKeluar::orderBy('id', 'DESC')->where('email_tujuan', $email)->paginate(25);
         return view('dosen_staff.list_surat_disposisi_surat_keluar',[
             'disposisiSuratKeluar' => $disposisiSuratKeluar,
+        ]);
+    }
+
+    public function DetailDisposisiSuratMasuk($id){
+        $disposisiSuratMasuk = DisposisiSuratMasuk::find($id);
+        $users = User::all();
+        $sifat = Sifat::all();
+
+        return view('dosen_staff.detail_disposisi_surat_masuk',[
+            'disposisiSuratMasuk' => $disposisiSuratMasuk,
+            'sifat' => $sifat,
+            'users' => $users,
+        ]);
+    }
+
+    public function DetailDisposisiSuratKeluar($id){
+        $disposisiSuratKeluar = DisposisiSuratKeluar::find($id);
+        $users = User::all();
+        $sifat = Sifat::all();
+
+        return view('dosen_staff.detail_disposisi_surat_keluar',[
+            'disposisiSuratKeluar' => $disposisiSuratKeluar,
+            'sifat' => $sifat,
+            'users' => $users,
         ]);
     }
 }
