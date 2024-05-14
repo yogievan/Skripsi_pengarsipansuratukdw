@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('web_title', 'Arsip Surat')
 @section('menu')
-    @include('layouts.menu.sekretariat')
+    @include('layouts.menu.kepala_bidang')
 @endsection
 @section('content_tittle', 'Detail Surat Masuk')
 @section('content')
@@ -98,22 +98,10 @@
                         <label class="font-normal">Status Surat</label>
                         <p class="font-semibold break-words">{{$suratMasuk -> status}}</p>
                     </div>
-                    <div class="mb-5">
-                        <a href="/Sekretariat/UpdateDetailArsipSuratMasuk-{{ $suratMasuk -> id }}">
-                            <button class="bg-blue-700 p-3 rounded text-white font-semibold m-auto w-full hover:bg-blue-600" onclick="return confirm('Apakah Surat akan divalidasi?')">Validasi Surat</button>
-                        </a>
-                    </div>
                 </div>
-                <hr class="my-5">
                 <div class="my-2">
-                    <button data-modal-target="tambah_arsip_surat_keluar" data-modal-toggle="tambah_arsip_surat_keluar" class="bg-[#006B3F] p-3 mb-5 rounded text-white font-semibold m-auto w-full hover:bg-[#018951]" {{ $akses }}>Buat Surat Keluar</button>
+                    <button data-modal-target="tambah_arsip_surat_keluar" data-modal-toggle="tambah_arsip_surat_keluar" class="bg-[#006B3F] p-3 rounded mb-5 text-white font-semibold m-auto w-full hover:bg-[#018951]" {{ $akses }}>Buat Surat Keluar</button>
                     <button data-modal-target="tambah_disposisi_surat_masuk" data-modal-toggle="tambah_disposisi_surat_masuk" class="bg-[#006B3F] p-3 rounded text-white font-semibold m-auto w-full hover:bg-[#018951]" {{ $akses }}>Buat Disposisi Surat Masuk</button>
-                </div>
-                <hr class="my-5">
-                <div>
-                    <a href="/Sekretariat/HapusArsipSuratMasuk-{{ $suratMasuk -> id }}">
-                        <button class="bg-red-600 p-3 rounded text-white font-semibold m-auto w-full hover:bg-red-500" onclick="return confirm('Apakah Surat akan dihapus?')">Hapus Surat</button>
-                    </a>
                 </div>
             </div>
 
@@ -135,7 +123,7 @@
                         </div>
 
                         {{-- body modal --}}
-                        <form action="{{route('TambahArsipSuratKeluar_sekretariat')}}" method="post">
+                        <form action="{{route('TambahArsipSuratKeluar_kepalaBidang')}}" method="post">
                             @csrf
                             <div class="my-2">
                                 <label class="font-semibold">Kode Surat</label>
@@ -211,7 +199,7 @@
                             <p class="text-red-600 mt-1 font-normal">
                                 *Note: Pastikan Berkas yang di Upload sudah sesuai!
                             </p>
-                            <input name="status" type="text" value="Tervalidasi Sekretariat" hidden>
+                            <input name="status" type="text" value="Belum Tervalidasi Sekretariat" hidden>
                             @php
                                 $email = Auth::user()->email;
                             @endphp
@@ -249,10 +237,6 @@
                                         <option value="{{ $item -> id }}">{{ $item -> sifat_surat }}</option>
                                     @endforeach
                                 </select>
-                            </div>
-                            <div class="my-2">
-                                <label class="font-semibold">Pengirim Surat</label>
-                                <input name="email_pengirim" value="{{ $suratMasuk -> email_pengirim }}" type="email" class="block bg-white rounded w-full outline-none p-2 font-normal focus:ring-green-500 focus:border-green-500" required>
                             </div>
                             <div class="my-2">
                                 <label class="font-semibold">Tujuan Surat</label>

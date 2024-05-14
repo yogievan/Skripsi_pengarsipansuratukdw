@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('web_title', 'List Surat Masuk')
+@section('web_title', 'List Surat Keluar')
 @section('menu')
     @include('layouts.menu.sekretariat')
 @endsection

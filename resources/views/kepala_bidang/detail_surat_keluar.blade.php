@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('web_title', 'Arsip Surat')
 @section('menu')
-    @include('layouts.menu.sekretariat')
+    @include('layouts.menu.kepala_bidang')
 @endsection
 @section('content_tittle', 'Detail Surat Keluar')
 @section('content')
@@ -103,21 +103,9 @@
                         <label class="font-normal">Status Surat</label>
                         <p class="font-semibold break-words">{{$suratKeluar -> status}}</p>
                     </div>
-                    <div class="my-2">
-                        <a href="/Sekretariat/UpdateDetailArsipSuratKeluar-{{ $suratKeluar -> id }}">
-                            <button class="bg-blue-700 p-3 rounded text-white font-semibold m-auto w-full hover:bg-blue-600" onclick="return confirm('Apakah Surat akan divalidasi?')">Validasi Surat</button>
-                        </a>
-                    </div>
                 </div>
-                <hr class="my-5">
                 <div class="my-2">
-                    <button data-modal-target="tambah_disposisi_surat_keluar" data-modal-toggle="tambah_disposisi_surat_keluar" class="bg-[#006B3F] p-3 rounded text-white font-semibold m-auto w-full hover:bg-[#018951]" {{$akses}}>Buat Disposisi Surat Keluar</button>
-                </div>
-                <hr class="my-5">
-                <div>
-                    <a href="/Sekretariat/HapusArsipSuratKeluar-{{ $suratKeluar -> id }}">
-                        <button class="bg-red-600 p-3 rounded text-white font-semibold m-auto w-full hover:bg-red-500" onclick="return confirm('Apakah Surat akan dihapus?')">Hapus Surat</button>
-                    </a>
+                    <button data-modal-target="tambah_disposisi_surat_keluar" data-modal-toggle="tambah_disposisi_surat_keluar" class="bg-[#006B3F] p-3 rounded text-white font-semibold m-auto w-full hover:bg-[#018951]" {{ $akses }}>Buat Disposisi Surat Keluar</button>
                 </div>
             </div>
         </div>
@@ -150,10 +138,6 @@
                                     <option value="{{ $item -> id }}">{{ $item -> sifat_surat }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                        <div class="my-2">
-                            <label class="font-semibold">Pengirim Surat</label>
-                            <input name="email_pengirim" value="{{ $suratKeluar -> email_pengirim }}" type="email" class="block bg-white rounded w-full outline-none p-2 font-normal focus:ring-green-500 focus:border-green-500" required>
                         </div>
                         <div class="my-2">
                             <label class="font-semibold">Tujuan Surat</label>

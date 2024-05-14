@@ -14,6 +14,7 @@ class SuratKeluar extends Model
         'id_kategori',
         'id_unit',
         'kode_surat',
+        'email_pengirim',
         'email_tujuan',
         'perihal',
         'keterangan',

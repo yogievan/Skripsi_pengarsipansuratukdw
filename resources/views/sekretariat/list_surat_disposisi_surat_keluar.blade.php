@@ -58,7 +58,7 @@
                                 <p class="status_green">{{ $item -> status }}</p>
                             </td>
                             <td class="flex gap-2 text-center w-[200px] mx-auto my-10">
-                                <a href="">
+                                <a href="/Sekretariat/DetailDisposisiSuratKeluar-{{ $item -> id }}">
                                     <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-600">Detail Disposisi</button>
                                 </a>
                                 <a href="">
@@ -69,6 +69,20 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="flex gap-2 mt-4">
+                <div class="my-auto">
+                    Data
+                    {{ $disposisiSuratKeluar -> firstItem() }}
+                    sampai
+                    {{ $disposisiSuratKeluar -> lastItem() }}
+                    dari
+                    {{ $disposisiSuratKeluar -> total() }}
+                    Disposisi Surat Keluar
+                </div>
+                <div class="my-auto ml-auto">
+                    {{ $disposisiSuratKeluar->links() }}
+                </div>
             </div>
         </div>
     </div>

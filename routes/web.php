@@ -20,11 +20,19 @@ Route::middleware(['auth'])->group(function(){
         Route::middleware('cekRole:KepalaBidang')->group(function () {
             Route::get('/KepalaBidang/Dashboard', [kepalaBidangController::class, 'ViewDashboard'])->name('Dashboard_kepalaBidang');
             Route::get('/KepalaBidang/ArsipSurat', [kepalaBidangController::class, 'ViewArsipSurat'])->name('ArsipSurat_kepalaBidang');
+            Route::post('/KepalaBidang/TambahArsipSuratMasuk', [kepalaBidangController::class, 'TambahArsipSuratMasuk'])->name('TambahArsipSuratMasuk_kepalaBidang');
+            Route::get('/KepalaBidang/DetailArsipSuratMasuk-{id}', [kepalaBidangController::class, 'DetailArsipSuratMasuk']);
+            Route::post('/KepalaBidang/TambahArsipSuratKeluar', [kepalaBidangController::class, 'TambahArsipSuratKeluar'])->name('TambahArsipSuratKeluar_kepalaBidang');
+            Route::get('/KepalaBidang/DetailArsipSuratKeluar-{id}', [kepalaBidangController::class, 'DetailArsipSuratKeluar']);
+            Route::get('/KepalaBidang/EditArsipSuratMasuk-{id}', [kepalaBidangController::class, 'EditArsipSuratMasuk']);
+            Route::put('/KepalaBidang/EditArsipSuratMasukSubmit-{id}', [kepalaBidangController::class, 'EditArsipSuratMasuk_updated']);
+            Route::get('/KepalaBidang/EditArsipSuratKeluar-{id}', [kepalaBidangController::class, 'EditArsipSuratKeluar']);
+            Route::put('/KepalaBidang/EditArsipSuratKeluarSubmit-{id}', [kepalaBidangController::class, 'EditArsipSuratKeluar_updated']);
             Route::get('/KepalaBidang/ListSuratMasuk', [kepalaBidangController::class, 'ViewListSuratMasuk'])->name('ListSuratMasuk_kepalaBidang');
             Route::get('/KepalaBidang/ListSuratKeluar', [kepalaBidangController::class, 'ViewListSuratKeluar'])->name('ListSuratKeluar_kepalaBidang');
-            Route::get('/KepalaBidang/ListSuratDisposisi', [kepalaBidangController::class, 'ViewListSuratDisposisi'])->name('ListSuratDisposisi_kepalaBidang');
-            Route::get('/KepalaBidang/DetailDisposisiSuratMasuk', [kepalaBidangController::class, 'ViewDetailDisposisiSuratMasuk'])->name('DetailDisposisiSuratMasuk_kepalaBidang');
-            Route::get('/KepalaBidang/DetailDisposisiSuratKeluar', [kepalaBidangController::class, 'ViewDetailDisposisiSuratKeluar'])->name('DetailDisposisiSuratKeluar_kepalaBidang');
+            
+            Route::get('/KepalaBidang/ListDisposisiSuratMasuk', [kepalaBidangController::class, 'ViewListDisposisiSuratMasuk'])->name('ListDisposisiSuratMasuk_kepalaBidang');
+            Route::get('/KepalaBidang/ListDisposisiSuratKeluar', [kepalaBidangController::class, 'ViewListDisposisiSuratKeluar'])->name('ListDisposisiSuratKeluar_kepalaBidang');
         });
 
         // USER DOSEN DAN STAFF
@@ -33,7 +41,10 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/DosenStaff/ArsipSurat', [dosenStaffController::class, 'ViewArsipSurat'])->name('ArsipSurat_dosenStaff');
             Route::get('/DosenStaff/ListSuratMasuk', [dosenStaffController::class, 'ViewListSuratMasuk'])->name('ListSuratMasuk_dosenStaff');
             Route::get('/DosenStaff/ListSuratKeluar', [dosenStaffController::class, 'ViewListSuratKeluar'])->name('ListSuratKeluar_dosenStaff');
-            Route::get('/DosenStaff/ListSuratDisposisi', [dosenStaffController::class, 'ViewListSuratDisposisi'])->name('ListSuratDisposisi_dosenStaff');
+            Route::get('/DosenStaff/DetailArsipSuratMasuk-{id}', [dosenStaffController::class, 'DetailArsipSuratMasuk']);
+            Route::get('/DosenStaff/DetailArsipSuratKeluar-{id}', [dosenStaffController::class, 'DetailArsipSuratKeluar']);
+            Route::get('/DosenStaff/ListDisposisiSuratMasuk', [dosenStaffController::class, 'ViewListDisposisiSuratMasuk'])->name('ListDisposisiSuratMasuk_dosenStaff');
+            Route::get('/DosenStaff/ListDisposisiSuratKeluar', [dosenStaffController::class, 'ViewListDisposisiSuratKeluar'])->name('ListDisposisiSuratKeluar_dosenStaff');
         });
 
         // USER SEKRETARIAT
@@ -44,21 +55,22 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/Sekretariat/ListSuratKeluar', [sekretariatController::class, 'ViewListSuratKeluar'])->name('ListSuratKeluar_sekretariat');
             Route::get('/Sekretariat/ListDisposisiSuratMasuk', [sekretariatController::class, 'ViewListDisposisiSuratMasuk'])->name('ListDisposisiSuratMasuk_sekretariat');
             Route::get('/Sekretariat/ListDisposisiSuratKeluar', [sekretariatController::class, 'ViewListDisposisiSuratKeluar'])->name('ListDisposisiSuratKeluar_sekretariat');
-
             Route::post('/Sekretariat/TambahArsipSuratMasuk', [sekretariatController::class, 'TambahArsipSuratMasuk'])->name('TambahArsipSuratMasuk_sekretariat');
-            Route::get('/Sekretariat/DetailArsipSuratMasuk-{id}', [sekretariatController::class, 'DetailArsipSuratMasuk'])->name('DetailArsipSuratMasuk_sekretariat');
+            Route::get('/Sekretariat/DetailArsipSuratMasuk-{id}', [sekretariatController::class, 'DetailArsipSuratMasuk']);
             Route::post('/Sekretariat/TambahArsipSuratKeluar', [sekretariatController::class, 'TambahArsipSuratKeluar'])->name('TambahArsipSuratKeluar_sekretariat');
-            Route::get('/Sekretariat/DetailArsipSuratKeluar-{id}', [sekretariatController::class, 'DetailArsipSuratKeluar'])->name('DetailArsipSuratKeluar_sekretariat');
-            Route::get('/Sekretariat/UpdateDetailArsipSuratMasuk-{id}', [sekretariatController::class, 'UpdateSuratMasuk'])->name('UpdateSuratMasuk_sekretariat');
-            Route::get('/Sekretariat/UpdateDetailArsipSuratKeluar-{id}', [sekretariatController::class, 'UpdateSuratKeluar'])->name('UpdateSuratKeluar_sekretariat');
+            Route::get('/Sekretariat/DetailArsipSuratKeluar-{id}', [sekretariatController::class, 'DetailArsipSuratKeluar']);
+            Route::get('/Sekretariat/UpdateDetailArsipSuratMasuk-{id}', [sekretariatController::class, 'UpdateSuratMasuk']);
+            Route::get('/Sekretariat/UpdateDetailArsipSuratKeluar-{id}', [sekretariatController::class, 'UpdateSuratKeluar']);
             Route::get('/Sekretariat/EditArsipSuratMasuk-{id}', [sekretariatController::class, 'EditArsipSuratMasuk'])->name('EditArsipSuratMasuk_sekretariat');
             Route::put('/Sekretariat/EditArsipSuratMasukSubmit-{id}', [sekretariatController::class, 'EditArsipSuratMasuk_updated']);
-            Route::get('/Sekretariat/EditArsipSuratKeluar-{id}', [sekretariatController::class, 'EditArsipSuratKeluar'])->name('EditArsipSuratKeluar_sekretariat');
+            Route::get('/Sekretariat/EditArsipSuratKeluar-{id}', [sekretariatController::class, 'EditArsipSuratKeluar']);
             Route::put('/Sekretariat/EditArsipSuratKeluarSubmit-{id}', [sekretariatController::class, 'EditArsipSuratKeluar_updated']);
-            Route::get('/Sekretariat/HapusArsipSuratMasuk-{id}', [sekretariatController::class, 'HapusArsipSuratMasuk'])->name('HapusArsipSuratMasuk_sekretariat');
-            Route::get('/Sekretariat/HapusArsipSuratKeluar-{id}', [sekretariatController::class, 'HapusArsipSuratKeluar'])->name('HapusArsipSuratKeluar_sekretariat');
+            Route::get('/Sekretariat/HapusArsipSuratMasuk-{id}', [sekretariatController::class, 'HapusArsipSuratMasuk']);
+            Route::get('/Sekretariat/HapusArsipSuratKeluar-{id}', [sekretariatController::class, 'HapusArsipSuratKeluar']);
             Route::post('/Sekretariat/TambahDisposisiSuratMasuk', [sekretariatController::class, 'TambahArsipDisposisiSuratMasuk'])->name('TambahArsipDisposisiSuratMasuk_sekretariat');
             Route::post('/Sekretariat/TambahDisposisiSuratKeluar', [sekretariatController::class, 'TambahArsipDisposisiSuratKeluar'])->name('TambahArsipDisposisiSuratKeluar_sekretariat');
+            Route::get('/Sekretariat/DetailDisposisiSuratMasuk-{id}', [sekretariatController::class, 'DetailDisposisiSuratMasuk']);
+            Route::get('/Sekretariat/DetailDisposisiSuratKeluar-{id}', [sekretariatController::class, 'DetailDisposisiSuratKeluar']);
         });
 
         // USER ADMIN

@@ -45,34 +45,52 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($suratMasuk as $no => $item)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <th scope="row" class="px-6 py-4 text-center border w-[50px] font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                no
+                                {{ $suratMasuk -> firstItem() + $no}}
                             </th>
                             <td class="px-6 py-4 text-center border w-[100px]">
-                                dd/mm/yyyy
+                                {{ $item -> created_at }}
                             </td>
-                            <td class="px-6 py-4 text-center border w-[350px] break-words">
-                                asdasdasdasda 
-                            </td>
-                            <td class="px-6 py-4 text-center border w-[150px]">
-                                Nama File
+                            <td class="px-6 py-4 border w-[350px] break-words">
+                                {{ $item -> perihal }} 
                             </td>
                             <td class="px-6 py-4 text-center border w-[150px]">
-                                <p class="bg-green-500 text-white p-1 rounded">Sudah Dibuat</p>
-                                <p class="bg-red-500 text-white p-1 rounded">Belum Dibuat</p>
+                                {{ $item -> berkas }}
                             </td>
-                            <td class="flex gap-2 text-center w-[150px] mx-auto my-10">
-                                <a href="{{ route('DetailArsipSurat_sekretariat') }}">
-                                    <button class="bg-blue-700 p-3 rounded text-white hover:bg-blue-400">Detail</button>
-                                </a>
-                                <a href="">
-                                    <button class="bg-red-500 p-3 rounded text-white hover:bg-blue-400">Hapus</button>
+                            <td class="px-6 py-4 text-center border w-[150px]">
+                                @php
+                                    if ( $item -> status == 'Tervalidasi Sekretariat') {
+                                            echo "<p class="."status_green"."> $item->status </p>";
+                                    }else {
+                                        echo "<p class="."status_red"."> $item->status </p>";
+                                    }
+                                @endphp
+                            </td>
+                            <td class="mx-auto my-10 text-center w-[100px]">
+                                <a href="/DosenStaff/DetailArsipSuratMasuk-{{ $item -> id }}">
+                                    <button class="w-[100px] bg-blue-700 p-3 rounded text-white hover:bg-blue-600">Detail Surat</button>
                                 </a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="flex gap-2 mt-4">
+                <div class="my-auto">
+                    Data
+                    {{ $suratMasuk -> firstItem() }}
+                    sampai
+                    {{ $suratMasuk -> lastItem() }}
+                    dari
+                    {{ $suratMasuk -> total() }}
+                    Surat Masuk
+                </div>
+                <div class="my-auto ml-auto">
+                    {{ $suratMasuk->links() }}
+                </div>
             </div>
         </div>
     </div>

@@ -25,14 +25,18 @@ class sekretariatController extends Controller
     public function viewArsipSurat(){
         $unit = Unit::all();
         $kategori = Kategori::all();
+        $pengirim = Auth::user()->email;
+        $date = date('D, d M Y');
 
-        $suratMasuk = SuratMasuk::orderBy('id','ASC')->paginate(5);
-        $suratKeluar = SuratKeluar::orderBy('id','ASC')->paginate(5);
+        $suratMasuk = SuratMasuk::orderBy('id','ASC')->where('email_pengirim', $pengirim)->whereDate('created_at', now()->toDate())->paginate(5);
+        $suratKeluar = SuratKeluar::orderBy('id','ASC')->where('email_pengirim', $pengirim)->whereDate('created_at', now()->toDate())->paginate(5);
         return view('sekretariat.arsip_surat',[
             'unit' => $unit,
             'kategori' => $kategori,
             'suratMasuk' => $suratMasuk,
             'suratKeluar' => $suratKeluar,
+            'pengirim' => $pengirim,
+            'date' => $date,
         ]);
     }
 
@@ -41,6 +45,7 @@ class sekretariatController extends Controller
             'id_kategori' => $request -> id_kategori,
             'id_unit' => $request -> id_unit,
             'email_pengirim' => $request -> email_pengirim,
+            'email_tujuan' => $request -> email_tujuan,
             'perihal' => $request -> perihal,
             'keterangan' => $request -> keterangan,
             'berkas' => $request -> berkas,
@@ -55,6 +60,7 @@ class sekretariatController extends Controller
             'id_kategori' => $request -> id_kategori,
             'id_unit' => $request -> id_unit,
             'kode_surat' => $request -> kode_surat,
+            'email_pengirim' => $request -> email_pengirim,
             'email_tujuan' => $request -> email_tujuan,
             'perihal' => $request -> perihal,
             'keterangan' => $request -> keterangan,
@@ -72,12 +78,20 @@ class sekretariatController extends Controller
         $kategori = Kategori::all();
         $sifat = Sifat::all();
 
+        $statusValid = "Tervalidasi Sekretariat";
+        if ($suratMasuk -> status == $statusValid) {
+            $akses = " ";
+        } else {
+            $akses = "hidden";
+        }
+
         return view('sekretariat.detail_surat_masuk',[
             'suratMasuk' => $suratMasuk,
             'users' => $users,
             'unit' => $unit,
             'kategori' => $kategori,
             'sifat' => $sifat,
+            'akses' => $akses,
         ]);
     }
     public function EditArsipSuratMasuk($id){
@@ -96,6 +110,7 @@ class sekretariatController extends Controller
         $suratMasuk -> id_kategori = $request -> id_kategori;
         $suratMasuk -> id_unit = $request -> id_unit;
         $suratMasuk -> email_pengirim = $request -> email_pengirim;
+        $suratMasuk -> email_tujuan = $request -> email_tujuan;
         $suratMasuk -> perihal = $request -> perihal;
         $suratMasuk -> keterangan = $request -> keterangan;
         $suratMasuk -> berkas = $request -> berkas;
@@ -118,12 +133,20 @@ class sekretariatController extends Controller
         $kategori = Kategori::all();
         $sifat = Sifat::all();
 
+        $statusValid = "Tervalidasi Sekretariat";
+        if ($suratKeluar -> status == $statusValid) {
+            $akses = " ";
+        } else {
+            $akses = "hidden";
+        }
+
         return view('sekretariat.detail_surat_keluar',[
             'suratKeluar' => $suratKeluar,
             'users' => $users,
             'unit' => $unit,
             'kategori' => $kategori,
             'sifat' => $sifat,
+            'akses' => $akses,
         ]);
     }
     public function EditArsipSuratKeluar($id){
@@ -142,6 +165,7 @@ class sekretariatController extends Controller
         $suratkeluar -> id_kategori = $request -> id_kategori;
         $suratkeluar -> id_unit = $request -> id_unit;
         $suratkeluar -> kode_surat = $request -> kode_surat;
+        $suratkeluar -> email_pengirim = $request -> email_pengirim;
         $suratkeluar -> email_tujuan = $request -> email_tujuan;
         $suratkeluar -> perihal = $request -> perihal;
         $suratkeluar -> keterangan = $request -> keterangan;
@@ -149,6 +173,7 @@ class sekretariatController extends Controller
         $suratkeluar -> save();
         return redirect(route('ArsipSurat_sekretariat'))->with('toast_success', 'Surat Berhasil di Edit!'); 
     }
+    
     public function UpdateSuratKeluar($id, Request $request){
         $suratKeluar = SuratKeluar::find($id);
         $status = "Tervalidasi Sekretariat";
@@ -169,14 +194,14 @@ class sekretariatController extends Controller
     
     
     public function viewListSuratMasuk(){
-        $suratMasuk = SuratMasuk::orderBy('id','ASC')->paginate(5);
+        $suratMasuk = SuratMasuk::orderBy('id','DESC')->paginate(25);
         return view('sekretariat.list_surat_masuk',[
             'suratMasuk' => $suratMasuk,
         ]);
     }
 
     public function viewListSuratKeluar(){
-        $suratKeluar = SuratKeluar::orderBy('id','ASC')->paginate(5);
+        $suratKeluar = SuratKeluar::orderBy('id','DESC')->paginate(25);
         return view('sekretariat.list_surat_keluar',[
             'suratKeluar' => $suratKeluar,
         ]);
@@ -193,6 +218,7 @@ class sekretariatController extends Controller
         DisposisiSuratMasuk::create([
             'id_sifat' => $request -> id_sifat,
             'id_surat_masuk' => $request -> id_surat_masuk,
+            'email_pengirim' => $request -> email_pengirim,
             'email_tujuan' => $request -> email_tujuan,
             'catatan' => $request -> catatan,
             'lampiran' => $request -> lampiran,
@@ -214,6 +240,7 @@ class sekretariatController extends Controller
         DisposisiSuratKeluar::create([
             'id_sifat' => $request -> id_sifat,
             'id_surat_keluar' => $request -> id_surat_keluar,
+            'email_pengirim' => $request -> email_pengirim,
             'email_tujuan' => $request -> email_tujuan,
             'catatan' => $request -> catatan,
             'lampiran' => $request -> lampiran,
@@ -223,4 +250,29 @@ class sekretariatController extends Controller
         ]);
         return redirect(route('ListDisposisiSuratKeluar_sekretariat'))->with('toast_success', 'Surat Berhasil di Disposisi'); 
     }
+
+    public function DetailDisposisiSuratMasuk($id){
+        $disposisiSuratMasuk = DisposisiSuratMasuk::find($id);
+        $users = User::all();
+        $sifat = Sifat::all();
+
+        return view('sekretariat.detail_disposisi_surat_masuk',[
+            'disposisiSuratMasuk' => $disposisiSuratMasuk,
+            'sifat' => $sifat,
+            'users' => $users,
+        ]);
+    }
+
+    public function DetailDisposisiSuratKeluar($id){
+        $disposisiSuratKeluar = DisposisiSuratKeluar::find($id);
+        $users = User::all();
+        $sifat = Sifat::all();
+
+        return view('sekretariat.detail_disposisi_surat_keluar',[
+            'disposisiSuratKeluar' => $disposisiSuratKeluar,
+            'sifat' => $sifat,
+            'users' => $users,
+        ]);
+    }
+
 }

@@ -12,6 +12,7 @@ class DisposisiSuratKeluar extends Model
     protected $fillable = [
         'id_sifat',
         'id_surat_keluar',
+        'email_pengirim',
         'email_tujuan',
         'catatan',
         'lampiran',

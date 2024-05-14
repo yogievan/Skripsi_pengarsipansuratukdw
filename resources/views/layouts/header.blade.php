@@ -29,9 +29,11 @@
         <p class="text-[1.5em] font-extrabold my-auto mb-3">
             @yield('content_tittle')
         </p>
-        <p class="ml-auto mr-5 my-auto font-semibold">
-            {{ $name }}
-        </p>
+        <div class="flex gap-5 ml-auto mr-5 my-auto">
+            <p class="font-semibold my-auto">
+                {{ $name }}
+            </p>
+        </div>
         <div class="mr-10 my-auto">
             <button data-popover-target="popover-user-profile" type="button" class="w-[50px] bg-white p-1 rounded-full border shadow">
                 <img class="rounded-full" src="../assets/img/profile_default.png" />

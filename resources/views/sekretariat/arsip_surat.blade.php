@@ -55,7 +55,11 @@
                                 </div>
                                 <div class="my-2">
                                     <label class="font-semibold">Pengirim Surat</label>
-                                    <input name="email_pengirim" type="email" class="block bg-white rounded w-full outline-none p-2 font-normal focus:ring-green-500 focus:border-green-500" required>
+                                    <input name="email_pengirim" value="{{ $pengirim }}" type="email" class="block bg-white rounded w-full outline-none p-2 font-normal focus:ring-green-500 focus:border-green-500" readonly>
+                                </div>
+                                <div class="my-2">
+                                    <label class="font-semibold">Tujuan Surat</label>
+                                    <input name="email_tujuan" type="email" class="block bg-white rounded w-full outline-none p-2 font-normal focus:ring-green-500 focus:border-green-500" required>
                                 </div>
                                 <div class="my-2">
                                     <label class="font-semibold">Perihal / Subjek</label>
@@ -145,6 +149,10 @@
                                     </div>
                                 </div>
                                 <div class="my-2">
+                                    <label class="font-semibold">Pengirim Surat</label>
+                                    <input name="email_pengirim" value="{{ $pengirim }}" type="email" class="block bg-white rounded w-full outline-none p-2 font-normal focus:ring-green-500 focus:border-green-500" readonly>
+                                </div>
+                                <div class="my-2">
                                     <label class="font-semibold">Tujuan Surat</label>
                                     <input name="email_tujuan" type="email" class="block bg-white rounded w-full outline-none p-2 font-normal focus:ring-green-500 focus:border-green-500" required>
                                 </div>
@@ -180,7 +188,7 @@
 
         {{-- table --}}
         <div class="mt-8">
-            <p class="font-semibold mb-2 text-[18px]">List Surat Masuk Hari ini</p>
+            <p class="font-semibold mb-2 text-[18px]">List Surat Masuk ({{ $date }})</p>
             <div class="relative overflow-x-auto border rounded">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -265,7 +273,7 @@
 
         {{-- table --}}
         <div class="mt-8">
-            <p class="font-semibold mb-2 text-[18px]">List Surat Keluar Hari ini</p>
+            <p class="font-semibold mb-2 text-[18px]">List Surat Keluar ({{ $date }})</p>
             <div class="relative overflow-x-auto border rounded">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">

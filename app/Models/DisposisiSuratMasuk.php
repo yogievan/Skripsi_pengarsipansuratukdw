@@ -13,6 +13,7 @@ class DisposisiSuratMasuk extends Model
     protected $fillable = [
         'id_sifat',
         'id_surat_masuk',
+        'email_pengirim',
         'email_tujuan',
         'catatan',
         'lampiran',

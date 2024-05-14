@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_sifat');
             $table->foreignId('id_surat_masuk');
+            $table->string('email_pengirim');
             $table->string('email_tujuan');
             $table->string('catatan');
             $table->string('lampiran');

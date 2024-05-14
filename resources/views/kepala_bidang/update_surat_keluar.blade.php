@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('web_title', 'Arsip Surat')
 @section('menu')
-    @include('layouts.menu.sekretariat')
+    @include('layouts.menu.kepala_bidang')
 @endsection
 @section('content_tittle', 'Edit Arsip Surat Masuk')
 @section('content')
@@ -13,7 +13,7 @@
     </a>
     <p class="ml-auto my-auto font-bold">Terakhir diperbarui: {{$suratKeluar -> updated_at}}</p>
 </div>
-<form action="/Sekretariat/EditArsipSuratKeluarSubmit-{{ $suratKeluar -> id }}" method="Post">
+<form action="/KepalaBidang/EditArsipSuratKeluarSubmit-{{ $suratKeluar -> id }}" method="Post">
     @csrf
     @method('put')
     <div class="my-2">
@@ -53,7 +53,7 @@
         <input name="email_pengirim" value="{{ $suratKeluar -> email_pengirim }}" type="email" class="block bg-white rounded w-full outline-none p-2 font-normal focus:ring-green-500 focus:border-green-500" readonly>
     </div>
     <div class="my-2">
-        <label class="font-semibold">Tujuan Surat</label>
+        <label class="font-semibold">Pengirim Surat</label>
         <input name="email_tujuan" value="{{ $suratKeluar -> email_tujuan }}" type="email" class="block bg-white rounded w-full outline-none p-2 font-normal focus:ring-green-500 focus:border-green-500" required>
     </div>
     <div class="my-2">
@@ -74,6 +74,5 @@
     <p class="text-red-600 mt-1 font-normal">
         *Note: Pastikan Berkas yang di Upload sudah sesuai!
     </p>
-    <input name="status" type="text" value="Tervalidasi Sekretariat" hidden>
 </form>
 @endsection
